@@ -25,7 +25,7 @@ type ImageFile = {
 export const projects = [
   {
     title: "Ruutu",
-    organization: "Sanoma",
+    organization: "Nelonen Media",
     year: "2023",
     description: "Finnish over-the-top video streaming service.",
     technologies: [
@@ -42,7 +42,6 @@ export const projects = [
     ] satisfies Link[],
     image: { file: "", alt: "" } satisfies ImageFile,
   },
-
   {
     title: "Chroniconnect",
     organization: "Junction",

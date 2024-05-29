@@ -70,6 +70,11 @@ Object.entries(allImages).forEach(([key, func]) => {
     <ol>
       {
         shownProjects.map((project) => {
+          const infoLine =
+            project.organization !== ""
+              ? [project.year, project.organization].join(" · ")
+              : project.year;
+
           return (
             <li class="project">
               <Link href={project.links[0].url}>
@@ -80,6 +85,7 @@ Object.entries(allImages).forEach(([key, func]) => {
                   />
                   <div class="details">
                     <p class="title">{project.title}</p>
+                    <p class="info">{infoLine}</p>
                   </div>
                 </div>
               </Link>
@@ -149,9 +155,9 @@ Object.entries(allImages).forEach(([key, func]) => {
     content: "";
     position: absolute;
     width: 100%;
-    height: 25%;
+    height: 30%;
     bottom: -5px;
-    background: linear-gradient(#4e4e4e00, #000000c0);
+    background: linear-gradient(#4e4e4e00, #000000c7);
   }
   .details {
     position: absolute;
@@ -160,5 +166,8 @@ Object.entries(allImages).forEach(([key, func]) => {
 
     font-weight: 600;
     color: var(--white);
+  }
+  .info {
+    font-size: 0.5rem;
   }
 </style>
