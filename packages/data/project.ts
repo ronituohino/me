@@ -6,8 +6,7 @@ export type Project = {
   technologies: Technology[];
   links: Link[];
   image: ImageFile;
-  // show in front page
-  show?: boolean;
+  show: "hidden" | "front" | "featured";
 };
 
 type Technology = string;
@@ -23,6 +22,26 @@ type ImageFile = {
 };
 
 export const projects = [
+  {
+    title: "Supla",
+    organization: "Nelonen Media",
+    year: "2024",
+    description: "Finnish podcast streaming service.",
+    technologies: [
+      "Next",
+      "React",
+      "Storybook",
+      "Docker",
+    ] satisfies Technology[],
+    links: [
+      {
+        url: "https://supla.fi",
+        type: "live",
+      },
+    ] satisfies Link[],
+    image: { file: "supla.png", alt: "" } satisfies ImageFile,
+    show: "front",
+  },
   {
     title: "Ruutu",
     organization: "Nelonen Media",
@@ -40,7 +59,8 @@ export const projects = [
         type: "live",
       },
     ] satisfies Link[],
-    image: { file: "", alt: "" } satisfies ImageFile,
+    image: { file: "ruutu.png", alt: "" } satisfies ImageFile,
+    show: "featured",
   },
   {
     title: "Chroniconnect",
@@ -51,6 +71,7 @@ export const projects = [
     technologies: ["React", "Vite", "MUI"] satisfies Technology[],
     links: [] satisfies Link[],
     image: { file: "", alt: "" } satisfies ImageFile,
+    show: "hidden",
   },
   {
     title: "SCAS",
@@ -65,6 +86,7 @@ export const projects = [
     ] satisfies Technology[],
     links: [] satisfies Link[],
     image: { file: "", alt: "" } satisfies ImageFile,
+    show: "hidden",
   },
   {
     title: "Doodle Design",
@@ -85,7 +107,7 @@ export const projects = [
       { url: "https://github.com/ronituohino/doodle-design", type: "github" },
     ] satisfies Link[],
     image: { file: "doodledesign.png", alt: "" } satisfies ImageFile,
-    show: true,
+    show: "front",
   },
   {
     title: "Battle Sheep",
@@ -99,7 +121,7 @@ export const projects = [
       { url: "https://github.com/ronituohino/battle-sheep", type: "github" },
     ] satisfies Link[],
     image: { file: "battlesheep.png", alt: "" } satisfies ImageFile,
-    show: true,
+    show: "front",
   },
   {
     title: "Viitevarasto",
@@ -113,7 +135,7 @@ export const projects = [
       { url: "https://github.com/ronituohino/viitevarasto", type: "github" },
     ] satisfies Link[],
     image: { file: "viitevarasto.png", alt: "" } satisfies ImageFile,
-    show: true,
+    show: "front",
   },
   {
     title: "GParticles",
@@ -130,6 +152,6 @@ export const projects = [
       { url: "https://github.com/ronituohino/gparticles", type: "github" },
     ] satisfies Link[],
     image: { file: "gparticles.png", alt: "" } satisfies ImageFile,
-    show: true,
+    show: "front",
   },
 ] satisfies Project[];
