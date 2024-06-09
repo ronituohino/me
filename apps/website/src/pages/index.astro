@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Link from "@components/Link.astro";
+import Bento from "@components/Bento.astro";
 import { projects } from "@packages/data/project";
 const shownProjects = projects.filter((p) => p.show !== "hidden");
 
@@ -27,160 +28,189 @@ Object.entries(allImages).forEach(([key, func]) => {
   title="Roni Tuohino"
   description="Hey, need a website or service? Hit me up!"
 >
-  <header>
-    <hgroup>
-      <h1>Roni Tuohino</h1>
-      <p>
-        I am a Finnish fullstack developer. I enjoy designing and building
-        websites and services.
-      </p>
-    </hgroup>
+  <ol>
+    <Bento class="intro">
+      <div class="top">
+        <hgroup>
+          <h1>Roni Tuohino</h1>
+          <p>
+            I am a Finnish fullstack developer. I enjoy designing and building
+            websites and services.
+          </p>
+        </hgroup>
+        <ul class="links">
+          <li>
+            <Link
+              aria-label="See my GitHub profile"
+              href="https://github.com/ronituohino"
+            >
+              <TbBrandGithub />
+            </Link>
+          </li>
+          <li>
+            <Link
+              aria-label="See my Linkedin profile"
+              href="https://www.linkedin.com/in/ronituohino/"
+            >
+              <TbBrandLinkedin />
+            </Link>
+          </li>
+          <li>
+            <Link
+              aria-label="Send me an email"
+              href="mailto:tuohinoroni@gmail.com"
+            >
+              <TbMail />
+            </Link>
+          </li>
+        </ul>
+      </div>
 
-    <ul class="links">
-      <li>
-        <Link
-          aria-label="See my GitHub profile"
-          href="https://github.com/ronituohino"
-        >
-          <TbBrandGithub />
-        </Link>
-      </li>
+      <Link href="/ronituohino-resume.pdf" title="Download résumé"
+        ><TbArrowDown /></Link
+      >
+    </Bento>
 
-      <li>
-        <Link
-          aria-label="See my Linkedin profile"
-          href="https://www.linkedin.com/in/ronituohino/"
-        >
-          <TbBrandLinkedin />
-        </Link>
-      </li>
+    {
+      shownProjects.map((project) => {
+        const infoLine =
+          project.organization !== ""
+            ? [project.year, project.organization].join(" · ")
+            : project.year;
 
-      <li>
-        <Link aria-label="Send me an email" href="mailto:tuohinoroni@gmail.com">
-          <TbMail />
-        </Link>
-      </li>
-
-      <li class="resume">
-        <Link href="/ronituohino-resume.pdf"><TbArrowDown />Résumé</Link>
-      </li>
-    </ul>
-  </header>
-
-  <section class="projects">
-    <h2>Projects that I've worked on</h2>
-    <ol>
-      {
-        shownProjects.map((project) => {
-          const infoLine =
-            project.organization !== ""
-              ? [project.year, project.organization].join(" · ")
-              : project.year;
-
-          return (
-            <li class="project">
-              <Link href={project.links[0].url}>
-                <div class="card">
-                  <Image
-                    src={images[project.image.file]()}
-                    alt={project.image.alt}
-                  />
-                  <div class="details">
-                    <p class="title">{project.title}</p>
-                    <p class="info">{infoLine}</p>
-                  </div>
+        return (
+          <Bento class="project" data-featured={project.show === "featured"}>
+            <Link href={project.links[0].url}>
+              <div class="card">
+                <Image
+                  src={images[project.image.file]()}
+                  alt={project.image.alt}
+                />
+                <div class="details">
+                  <p class="title">{project.title}</p>
+                  <p class="info">{infoLine}</p>
                 </div>
-              </Link>
-            </li>
-          );
-        })
-      }
-    </ol>
-  </section>
+              </div>
+            </Link>
+          </Bento>
+        );
+      })
+    }
+  </ol>
 </Layout>
 
-<style>
-  header {
-    margin-top: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  hgroup > h1 {
-    font-size: 2.5rem;
-    font-weight: 750;
-  }
-  hgroup > p {
-    margin-top: 0.5rem;
-    max-width: 16.5rem;
-    color: var(--dim);
+<style lang="less">
+  @grid-1-bp: 450px;
+  @grid-2-bp: 680px;
+  ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--bento-min-size), 1fr));
+    grid-auto-flow: dense;
+
+    justify-content: center;
+    grid-gap: var(--bento-gap);
   }
 
-  @media only screen and (min-width: 768px) {
-    header {
-      flex-direction: row;
+  .intro {
+    padding: 1rem;
+    @media only screen and (min-width: @grid-1-bp) {
+      grid-column: span 2;
+    }
+
+    > .top {
+      display: flex;
+      justify-content: space-between;
+
+      > hgroup {
+        > h1 {
+          font-size: 2.5rem;
+          font-weight: 750;
+          margin-top: -10px;
+        }
+        > p {
+          margin-top: 0.5rem;
+          max-width: 16.5rem;
+          color: var(--dim);
+        }
+      }
+
+      > .links {
+        display: flex;
+        margin-left: 0.5rem;
+        flex-direction: column;
+
+        > li {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          > a {
+            display: flex;
+            font-size: 2rem;
+            color: var(--dim);
+            transition: color var(--transition-speeds) ease-in-out;
+
+            &:hover,
+            &:focus-visible {
+              color: var(--white);
+            }
+          }
+        }
+      }
+    }
+
+    > .resume {
+      border: 1px solid var(--bento-border);
+      padding: 0.5rem;
+      border-radius: 1rem;
     }
   }
 
-  .links {
-    display:;
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-  .links > li > a {
-    display: flex;
-    font-size: 2rem;
-    color: var(--dim);
-    transition: color 150ms ease-in-out;
-  }
-  .links > li > a:hover,
-  .links > li > a:focus-visible {
-    color: var(--white);
-  }
+  .project {
+    &[data-featured] {
+      @media only screen and (min-width: @grid-1-bp) {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+    }
 
-  h2 {
-  }
-  section.projects {
-    margin-top: 4rem;
-  }
-  section.projects > ol {
-    margin-top: 1rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    justify-content: center;
-    grid-gap: 0.5rem;
-  }
+    .card {
+      position: relative;
 
-  .card {
-    position: relative;
-    border-radius: 1rem;
-    overflow: hidden;
-    transition: scale 150ms ease-in-out;
-  }
-  .card:hover,
-  .project > a:focus-visible > .card {
-    scale: 1.025;
-  }
-  .card > img {
-    object-fit: contain;
-  }
-  .card::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 40%;
-    bottom: -5px;
-    background: linear-gradient(#00000000 0%, #0000009c 50%, #000000f3 100%);
-  }
-  .details {
-    position: absolute;
-    left: 0.5rem;
-    bottom: 0.5rem;
+      > img {
+        transition: scale var(--transition-speeds) ease-in-out;
+      }
+      &:hover > img {
+        scale: 1.05;
+      }
 
-    font-weight: 600;
-    color: var(--white);
-  }
-  .details > .info {
-    font-size: 0.5rem;
+      &::before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 40%;
+        bottom: -5px;
+        background: linear-gradient(
+          #00000000 0%,
+          #0000009c 50%,
+          #000000f3 100%
+        );
+      }
+
+      .details {
+        position: absolute;
+        z-index: 2;
+        left: 0.5rem;
+        bottom: 0.5rem;
+
+        font-weight: 600;
+        color: var(--white);
+
+        > .info {
+          font-size: 0.5rem;
+        }
+      }
+    }
   }
 </style>

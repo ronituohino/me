@@ -2,9 +2,10 @@
 type Props = {
   href: string;
   ariaLabel?: string;
+  title?: string;
   class?: string;
 };
-const { href, ariaLabel, class: className } = Astro.props;
+const { href, ariaLabel, title, class: className } = Astro.props;
 ---
 
 <a
@@ -12,5 +13,6 @@ const { href, ariaLabel, class: className } = Astro.props;
   target="_blank"
   rel="noreferrer noopener"
   aria-label={ariaLabel}
+  title={title}
   class:list={[className]}><slot /></a
 >

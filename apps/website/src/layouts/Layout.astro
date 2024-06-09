@@ -1,6 +1,7 @@
 ---
 import "@fontsource-variable/inter";
 import Link from "@components/Link.astro";
+import Bento from "@components/Bento.astro";
 
 type Props = {
   title: string;
@@ -31,7 +32,7 @@ const { title, description, class: className } = Astro.props;
       </footer>
     </main>
 
-    <style is:global>
+    <style is:global lang="less">
       * {
         box-sizing: border-box;
         margin: 0;
@@ -60,15 +61,22 @@ const { title, description, class: className } = Astro.props;
       }
     </style>
 
-    <style>
+    <style lang="less">
       :root {
         --white: hsl(0, 0%, 92%);
         --black: hsl(0, 0%, 8%);
         --dim: hsl(0, 0%, 50%);
-        --background: #2e2e2e;
+        --background: #141414;
 
-        --content-padding: 0 1rem;
+        --bento-min-size: 200px;
+        --bento-border: #2c2c2c;
+        --bento-bg: #151515;
+        --bento-gap: 0.5rem;
+
+        --content-padding: 1rem;
         --max-width: 768px;
+
+        --transition-speeds: 150ms;
 
         /* Breakpoints 
           1024px
@@ -87,12 +95,12 @@ const { title, description, class: className } = Astro.props;
       main {
         margin: 0 auto;
         max-width: var(--max-width);
-        padding: var(--content-padding);
+        padding: var(--content-padding) var(--content-padding);
       }
+
       footer {
-        margin-top: 4rem;
-        margin-bottom: 2rem;
-        color: var(--dim);
+        margin-top: 0.25rem;
+        font-size: 0.75rem;
       }
     </style>
   </body>

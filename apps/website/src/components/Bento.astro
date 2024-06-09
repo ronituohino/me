@@ -1,0 +1,24 @@
+---
+const { class: className, ...props } = Astro.props;
+---
+
+<li class={className} {...props}>
+  <slot />
+</li>
+
+<style lang="less">
+  li {
+    border-radius: 1rem;
+    border: 1px solid;
+    border-color: var(--bento-border);
+    background: var(--bento-bg);
+    overflow: hidden;
+
+    transition: border-color var(--transition-speeds) ease-in-out;
+
+    &:hover,
+    &:focus-within {
+      border-color: var(--white);
+    }
+  }
+</style>
