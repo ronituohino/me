@@ -9,7 +9,7 @@ export function Education() {
         <Detail
           title="BSc Computer Science"
           place="University of Helsinki"
-          time="6/2021 - 5/2024"
+          time="6/2021 - 6/2024"
           wrapTitle
         >
           <ul className={styles.courses}>

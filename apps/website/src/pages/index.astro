@@ -5,7 +5,13 @@ import Bento from "@components/Bento.astro";
 import { projects } from "@packages/data/project";
 const shownProjects = projects.filter((p) => p.show !== "hidden");
 
-import { TbBrandGithub, TbBrandLinkedin, TbMail } from "solid-icons/tb";
+import {
+  TbArrowDownSquare,
+  TbDownload,
+  TbBrandGithub,
+  TbBrandLinkedin,
+  TbMail,
+} from "solid-icons/tb";
 import { Image } from "astro:assets";
 
 type ImagesObject = { [key: string]: Function };
@@ -25,51 +31,50 @@ Object.entries(allImages).forEach(([key, func]) => {
 >
   <ol>
     <Bento class="intro">
-      <div class="top">
+      <div class="text">
         <hgroup>
           <h1>Roni Tuohino</h1>
-          <p>
-            I am a Finnish fullstack developer.<br /> I enjoy designing and building
-            websites and services.
-          </p>
+          <p class="title">Fullstack Developer</p>
         </hgroup>
-        <ul class="links">
-          <li>
-            <Link
-              aria-label="See my GitHub profile"
-              href="https://github.com/ronituohino"
-            >
-              <TbBrandGithub />
-            </Link>
-          </li>
-          <li>
-            <Link
-              aria-label="See my Linkedin profile"
-              href="https://www.linkedin.com/in/ronituohino/"
-            >
-              <TbBrandLinkedin />
-            </Link>
-          </li>
-          <li>
-            <Link
-              aria-label="Send me an email"
-              href="mailto:tuohinoroni@gmail.com"
-            >
-              <TbMail />
-            </Link>
-          </li>
-        </ul>
+        <p class="note">I enjoy engineering solutions.</p>
+        <p class="note">
+          Check out projects I've worked on, and download my résumé!
+        </p>
       </div>
-    </Bento>
 
-    <Bento class="note"
-      ><p>
-        Check out projects I've worked on below, and download my <Link
-          href="/ronituohino-resume.pdf"
-          title="Download résumé">résumé</Link
-        >!
-      </p></Bento
-    >
+      <ul class="links">
+        <li>
+          <Link
+            ariaLabel="See my GitHub profile"
+            href="https://github.com/ronituohino"
+          >
+            <TbBrandGithub />
+          </Link>
+        </li>
+        <li>
+          <Link
+            ariaLabel="See my Linkedin profile"
+            href="https://www.linkedin.com/in/ronituohino/"
+          >
+            <TbBrandLinkedin />
+          </Link>
+        </li>
+        <li>
+          <Link
+            ariaLabel="Send me an email"
+            href="mailto:tuohinoroni@gmail.com"
+          >
+            <TbMail />
+          </Link>
+        </li>
+
+        <li class="resume">
+          <Link href="/ronituohino-resume.pdf" title="Download résumé"
+            ><TbDownload /></Link
+          >
+        </li>
+      </ul>
+    </Bento>
 
     {
       shownProjects.map((project) => {
@@ -100,8 +105,8 @@ Object.entries(allImages).forEach(([key, func]) => {
 </Layout>
 
 <style lang="less">
-  @grid-1-bp: 450px;
-  @grid-2-bp: 680px;
+  @grid-1-bp: 490px;
+  @grid-2-bp: 720px;
   ol {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--bento-min-size), 1fr));
@@ -117,71 +122,85 @@ Object.entries(allImages).forEach(([key, func]) => {
       grid-column: span 2;
     }
 
-    > .top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @link-bp: 460px;
+    @smaller-bp: 420px;
+    @media only screen and (min-width: @link-bp) {
+      flex-direction: row;
+    }
+
+    > .text {
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
 
-      @link-bp: 460px;
-      @media only screen and (min-width: @link-bp) {
-        flex-direction: row;
-      }
-
       > hgroup {
+        margin-bottom: 1rem;
+
         > h1 {
           font-size: var(--font-size-lg);
           font-weight: var(--font-weight-bold);
-          margin-top: -10px;
+          margin-top: -8px;
+
+          @media only screen and (min-width: @smaller-bp) {
+            font-size: var(--font-size-xl);
+          }
         }
-        > p {
-          margin-top: 0.5rem;
-          max-width: 16.5rem;
-          color: var(--dim);
+        > .title {
           font-weight: var(--font-weight-light);
         }
       }
+      > .note {
+        max-width: 16.5rem;
+        color: var(--dim);
+        font-weight: var(--font-weight-light);
+      }
+    }
 
-      > .links {
+    > .links {
+      display: flex;
+      gap: 0.25rem;
+      margin: 1rem 0 0 0;
+      flex-direction: row;
+      align-items: center;
+
+      @media only screen and (min-width: @link-bp) {
+        justify-content: space-between;
+        gap: 0;
+        flex-direction: column;
+        margin: 0 0 0 0.5rem;
+      }
+
+      > li {
         display: flex;
-        gap: 0.25rem;
-        margin: 1rem 0 0 0;
-        flex-direction: row;
+        justify-content: center;
+        align-items: center;
 
-        @media only screen and (min-width: @link-bp) {
-          justify-content: space-between;
-          gap: 0;
-          flex-direction: column;
-          margin: 0 0 0 0.5rem;
-        }
-
-        > li {
+        > a {
           display: flex;
-          justify-content: center;
-          align-items: center;
+          font-size: 2rem;
+          color: var(--dim);
+          transition: color var(--transition-speeds) ease-in-out;
 
-          > a {
-            display: flex;
-            font-size: 2rem;
-            color: var(--dim);
-            transition: color var(--transition-speeds) ease-in-out;
-
-            &:hover,
-            &:focus-visible {
-              color: var(--white);
-            }
+          &:hover,
+          &:focus-visible {
+            color: var(--white);
           }
         }
       }
-    }
-  }
 
-  .note {
-    display: grid;
-    place-items: center;
-    padding: 1rem;
-    color: var(--dim);
-    font-weight: var(--font-weight-light);
-    text-align: center;
+      > .resume > a {
+        border-radius: 0.75rem;
+        border: 2px solid;
+        border-color: 0.5rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+    }
   }
 
   .project {
@@ -192,14 +211,16 @@ Object.entries(allImages).forEach(([key, func]) => {
       }
     }
 
+    &:focus-within .card > img,
+    .card:hover > img {
+      scale: 1.05;
+    }
+
     .card {
       position: relative;
 
       > img {
         transition: scale var(--transition-speeds) ease-in-out;
-      }
-      &:hover > img {
-        scale: 1.05;
       }
 
       &::before {
