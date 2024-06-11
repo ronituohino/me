@@ -8,6 +8,10 @@ It contains two applications in the `apps` folder:
 
 Shared data is stored in the `packages` folder.
 
+## TODO
+
+- Convert images from .png to .webp
+
 ## Developing
 
 Make sure you have npm installed.

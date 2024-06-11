@@ -1,7 +1,5 @@
 ---
 import "@fontsource-variable/inter";
-import Link from "@components/Link.astro";
-import Bento from "@components/Bento.astro";
 
 type Props = {
   title: string;
@@ -25,11 +23,6 @@ const { title, description, class: className } = Astro.props;
   <body>
     <main class:list={[className]}>
       <slot />
-      <footer>
-        Made by <Link href="https://github.com/ronituohino">me</Link>, using <Link
-          href="https://astro.build/">astro</Link
-        >.
-      </footer>
     </main>
 
     <style is:global lang="less">
@@ -66,6 +59,7 @@ const { title, description, class: className } = Astro.props;
         --white: hsl(0, 0%, 92%);
         --black: hsl(0, 0%, 8%);
         --dim: hsl(0, 0%, 50%);
+        --link: #2d3157;
         --background: #141414;
 
         --bento-min-size: 200px;
@@ -78,29 +72,26 @@ const { title, description, class: className } = Astro.props;
 
         --transition-speeds: 150ms;
 
-        /* Breakpoints 
-          1024px
-          768px
-          540px
-        */
+        --font-size-lg: 50px;
+        --font-size-md: 20px;
+        --font-size-sm: 10px;
 
-        font-size: 20px;
+        --font-weight-bold: 750;
+        --font-weight-normal: 600;
+        --font-weight-light: 400;
+
+        font-size: var(--font-size-md);
         color: var(--white);
         background: var(--background);
       }
       html {
         font-family: "Inter Variable", Ubuntu, sans-serif;
-        font-weight: 600;
+        font-weight: var(--font-weight-normal);
       }
       main {
         margin: 0 auto;
         max-width: var(--max-width);
         padding: var(--content-padding) var(--content-padding);
-      }
-
-      footer {
-        margin-top: 0.25rem;
-        font-size: 0.75rem;
       }
     </style>
   </body>

@@ -5,12 +5,7 @@ import Bento from "@components/Bento.astro";
 import { projects } from "@packages/data/project";
 const shownProjects = projects.filter((p) => p.show !== "hidden");
 
-import {
-  TbBrandGithub,
-  TbBrandLinkedin,
-  TbMail,
-  TbArrowDown,
-} from "solid-icons/tb";
+import { TbBrandGithub, TbBrandLinkedin, TbMail } from "solid-icons/tb";
 import { Image } from "astro:assets";
 
 type ImagesObject = { [key: string]: Function };
@@ -34,7 +29,7 @@ Object.entries(allImages).forEach(([key, func]) => {
         <hgroup>
           <h1>Roni Tuohino</h1>
           <p>
-            I am a Finnish fullstack developer. I enjoy designing and building
+            I am a Finnish fullstack developer.<br /> I enjoy designing and building
             websites and services.
           </p>
         </hgroup>
@@ -65,11 +60,16 @@ Object.entries(allImages).forEach(([key, func]) => {
           </li>
         </ul>
       </div>
-
-      <Link href="/ronituohino-resume.pdf" title="Download résumé"
-        ><TbArrowDown /></Link
-      >
     </Bento>
+
+    <Bento class="note"
+      ><p>
+        Check out projects I've worked on below, and download my <Link
+          href="/ronituohino-resume.pdf"
+          title="Download résumé">résumé</Link
+        >!
+      </p></Bento
+    >
 
     {
       shownProjects.map((project) => {
@@ -83,8 +83,8 @@ Object.entries(allImages).forEach(([key, func]) => {
             <Link href={project.links[0].url}>
               <div class="card">
                 <Image
-                  src={images[project.image.file]()}
-                  alt={project.image.alt}
+                  src={images[`${project.slug}.png`]()}
+                  alt={project.description}
                 />
                 <div class="details">
                   <p class="title">{project.title}</p>
@@ -119,25 +119,40 @@ Object.entries(allImages).forEach(([key, func]) => {
 
     > .top {
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
+
+      @link-bp: 460px;
+      @media only screen and (min-width: @link-bp) {
+        flex-direction: row;
+      }
 
       > hgroup {
         > h1 {
-          font-size: 2.5rem;
-          font-weight: 750;
+          font-size: var(--font-size-lg);
+          font-weight: var(--font-weight-bold);
           margin-top: -10px;
         }
         > p {
           margin-top: 0.5rem;
           max-width: 16.5rem;
           color: var(--dim);
+          font-weight: var(--font-weight-light);
         }
       }
 
       > .links {
         display: flex;
-        margin-left: 0.5rem;
-        flex-direction: column;
+        gap: 0.25rem;
+        margin: 1rem 0 0 0;
+        flex-direction: row;
+
+        @media only screen and (min-width: @link-bp) {
+          justify-content: space-between;
+          gap: 0;
+          flex-direction: column;
+          margin: 0 0 0 0.5rem;
+        }
 
         > li {
           display: flex;
@@ -158,12 +173,15 @@ Object.entries(allImages).forEach(([key, func]) => {
         }
       }
     }
+  }
 
-    > .resume {
-      border: 1px solid var(--bento-border);
-      padding: 0.5rem;
-      border-radius: 1rem;
-    }
+  .note {
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    color: var(--dim);
+    font-weight: var(--font-weight-light);
+    text-align: center;
   }
 
   .project {
@@ -208,7 +226,8 @@ Object.entries(allImages).forEach(([key, func]) => {
         color: var(--white);
 
         > .info {
-          font-size: 0.5rem;
+          font-size: var(--font-size-sm);
+          font-weight: var(--font-weight-light);
         }
       }
     }
