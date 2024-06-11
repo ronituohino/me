@@ -15,6 +15,8 @@ Shared data is stored in the `packages` folder.
 - Add a cool "scroll to top" button
 - Polish site with visual candy
 - Make icons cooler
+- Custom favicon
+- Go over SEO and metadata
 
 ## Developing
 
