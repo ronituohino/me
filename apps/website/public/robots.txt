@@ -5,4 +5,4 @@
 
 User-agent: *
 
-Sitemap: https://ronituohino.fi/sitemap.xml
+Sitemap: https://ronituohino.fi/sitemap-index.xml

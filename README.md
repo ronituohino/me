@@ -28,7 +28,6 @@ npm run dev
 
 - Add a cool "scroll to top" button
 - Polish site with visual candy
-- Go over SEO and metadata
 
 ## Building
 
