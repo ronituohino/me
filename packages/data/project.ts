@@ -64,8 +64,17 @@ export const projects = [
     year: "2023",
     description: "48-hour-long hackathon project for Tietoevry.",
     technologies: ["React", "Vite", "MUI"] satisfies Technology[],
-    links: [] satisfies Link[],
-    show: "hidden",
+    links: [
+      {
+        url: "https://tuskaproject-b09f5.web.app/",
+        type: "live",
+      },
+      {
+        url: "https://github.com/huongtxdo/tuska-junction2023",
+        type: "github",
+      },
+    ] satisfies Link[],
+    show: "front",
   },
   {
     title: "SCAS",

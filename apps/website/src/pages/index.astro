@@ -6,7 +6,6 @@ import { projects } from "@packages/data/project";
 const shownProjects = projects.filter((p) => p.show !== "hidden");
 
 import {
-  TbArrowDownSquare,
   TbDownload,
   TbBrandGithub,
   TbBrandLinkedin,
@@ -36,9 +35,9 @@ Object.entries(allImages).forEach(([key, func]) => {
           <h1>Roni Tuohino</h1>
           <p class="title">Fullstack Developer</p>
         </hgroup>
-        <p class="note">I enjoy engineering solutions.</p>
+        <p class="note">I enjoy engineering solutions</p>
         <p class="note">
-          Check out projects I've worked on, and download my résumé!
+          Check out projects I've worked on and download my résumé
         </p>
       </div>
 
@@ -126,7 +125,7 @@ Object.entries(allImages).forEach(([key, func]) => {
     flex-direction: column;
     justify-content: space-between;
 
-    @link-bp: 460px;
+    @link-bp: 470px;
     @smaller-bp: 420px;
     @media only screen and (min-width: @link-bp) {
       flex-direction: row;
@@ -190,15 +189,31 @@ Object.entries(allImages).forEach(([key, func]) => {
           &:focus-visible {
             color: var(--white);
           }
+
+          > svg {
+            stroke-width: 1.5px;
+          }
         }
       }
 
-      > .resume > a {
-        border-radius: 0.75rem;
-        border: 2px solid;
-        border-color: 0.5rem;
-        padding: 0.5rem;
-        font-size: 1rem;
+      > .resume {
+        margin: 0 0 0 0.25rem;
+
+        @media only screen and (min-width: @link-bp) {
+          margin: 0.25rem 0 0 0;
+        }
+
+        > a {
+          border-radius: 0.75rem;
+          border: 2px solid;
+          border-color: 0.5rem;
+          padding: 0.5rem;
+          font-size: 1rem;
+
+          > svg {
+            stroke-width: 2px;
+          }
+        }
       }
     }
   }
@@ -220,6 +235,7 @@ Object.entries(allImages).forEach(([key, func]) => {
       position: relative;
 
       > img {
+        width: 100%;
         transition: scale var(--transition-speeds) ease-in-out;
       }
 

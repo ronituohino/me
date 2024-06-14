@@ -10,11 +10,8 @@ Shared data is stored in the `packages` folder.
 
 ## TODO
 
-- Size images up to 1024x1024
-- Add chroniconnect project
 - Add a cool "scroll to top" button
 - Polish site with visual candy
-- Make icons cooler
 - Custom favicon
 - Go over SEO and metadata
 
