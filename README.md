@@ -8,13 +8,6 @@ It contains two applications in the `apps` folder:
 
 Shared data is stored in the `packages` folder.
 
-## TODO
-
-- Add a cool "scroll to top" button
-- Polish site with visual candy
-- Custom favicon
-- Go over SEO and metadata
-
 ## Developing
 
 Make sure you have npm installed.
@@ -30,6 +23,12 @@ Start development servers for both apps.
 ```
 npm run dev
 ```
+
+### TODO
+
+- Add a cool "scroll to top" button
+- Polish site with visual candy
+- Go over SEO and metadata
 
 ## Building
 
