@@ -85,8 +85,15 @@ Object.entries(allImages).forEach(([key, func]) => {
 
         const fadeDelay = `${(index + 1) * 150}ms`
         return (
-          <Bento class=`project pos-${index+1}` style={{ "--fade-delay": fadeDelay }} data-featured={project.show === "featured"}>
-            <Link href={project.links[0].url}>
+          <Bento 
+            class=`project pos-${index+1}` 
+            style={{ "--fade-delay": fadeDelay }} 
+            data-featured={project.show === "featured"}
+          >
+            <Link href={project.links[0].url} 
+              ariaLabel={`${project.title}: 
+              ${project.description}
+              (${infoLine}${project.show === "featured" ? ", featured" : ""})`}>
               <div class="card">
                 <Image
                   src={images[`${project.slug}.png`]()}
