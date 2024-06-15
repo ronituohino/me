@@ -2,6 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import Link from "@components/Link.astro";
 import Bento from "@components/Bento.astro";
+
 import { projects } from "@packages/data/project";
 const shownProjects = projects.filter((p) => p.show !== "hidden");
 
@@ -73,14 +74,15 @@ Object.entries(allImages).forEach(([key, func]) => {
     </Bento>
 
     {
-      shownProjects.map((project) => {
+      shownProjects.map((project, index) => {
         const infoLine =
           project.organization !== ""
             ? [project.year, project.organization].join(" · ")
             : project.year;
 
+        const fadeDelay = `${(index + 1) * 250}ms`
         return (
-          <Bento class="project" data-featured={project.show === "featured"}>
+          <Bento class=`project pos-${index+1}` style={{ "--fade-delay": fadeDelay }} data-featured={project.show === "featured"}>
             <Link href={project.links[0].url}>
               <div class="card">
                 <Image
@@ -103,6 +105,9 @@ Object.entries(allImages).forEach(([key, func]) => {
 <style lang="less">
   @grid-1-bp: 490px;
   @grid-2-bp: 720px;
+  @link-bp: 470px;
+  @smaller-bp: 420px;
+
   ol {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--bento-min-size), 1fr));
@@ -122,8 +127,6 @@ Object.entries(allImages).forEach(([key, func]) => {
     flex-direction: column;
     justify-content: space-between;
 
-    @link-bp: 470px;
-    @smaller-bp: 420px;
     @media only screen and (min-width: @link-bp) {
       flex-direction: row;
     }

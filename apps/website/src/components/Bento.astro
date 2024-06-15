@@ -20,5 +20,23 @@ const { class: className, ...props } = Astro.props;
     &:focus-within {
       border-color: var(--white);
     }
+
+    --fade-delay: 0ms;
+
+    animation: fade-in ease 1s;
+    animation-delay: var(--fade-delay);
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+
+  @keyframes fade-in {
+    0% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
   }
 </style>

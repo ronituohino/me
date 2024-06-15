@@ -29,7 +29,6 @@ npm run dev
 - Add a cool "scroll to top" button
 - Polish site with visual candy
   - Background and edge visuals
-  - Fade in animation for Bentos
   - Some color for elements
 
 ## Building
