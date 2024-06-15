@@ -117,6 +117,8 @@ const ogHref = `${Astro.site}og.png`;
         --dim: hsl(0, 0%, 50%);
         --link: #2d3157;
         --background: #141414;
+        --primary: #fecaff;
+        --secondary: #01b1ff;
 
         --bento-min-size: 220px;
         --bento-border: #2c2c2c;
@@ -145,10 +147,42 @@ const ogHref = `${Astro.site}og.png`;
         font-family: "Inter Variable", Ubuntu, sans-serif;
         font-weight: var(--font-weight-normal);
       }
+      body {
+        background-image: url("/public/spot.svg");
+        background-size: 40px 40px;
+      }
       main {
+        position: relative;
         margin: 0 auto;
         max-width: var(--max-width);
         padding: var(--content-padding) var(--content-padding);
+        background-color: #141414;
+      }
+      main::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -300px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--background) 100%
+        );
+        height: 100%;
+        width: 300px;
+      }
+      main::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -300px;
+        background: linear-gradient(
+          270deg,
+          transparent 0%,
+          var(--background) 100%
+        );
+        height: 100%;
+        width: 300px;
       }
     </style>
   </body>

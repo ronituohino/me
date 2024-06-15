@@ -27,9 +27,6 @@ npm run dev
 ### TODO
 
 - Add a cool "scroll to top" button
-- Polish site with visual candy
-  - Background and edge visuals
-  - Some color for elements
 
 ## Building
 

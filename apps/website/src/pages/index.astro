@@ -33,14 +33,16 @@ Object.entries(allImages).forEach(([key, func]) => {
           <h1>Roni Tuohino</h1>
           <p class="title">Fullstack Developer</p>
         </hgroup>
-        <p class="note">I enjoy engineering solutions</p>
+        
         <p class="note">
-          Check out projects I've worked on and download my résumé
+          I enjoy engineering solutions.
+          <br/>
+          Check out projects I've worked on and download my résumé!
         </p>
       </div>
 
       <ul class="links">
-        <li>
+        <li class="github">
           <Link
             ariaLabel="See my GitHub profile"
             href="https://github.com/ronituohino"
@@ -48,7 +50,7 @@ Object.entries(allImages).forEach(([key, func]) => {
             <TbBrandGithub />
           </Link>
         </li>
-        <li>
+        <li class="linkedin">
           <Link
             ariaLabel="See my Linkedin profile"
             href="https://www.linkedin.com/in/ronituohino/"
@@ -195,7 +197,15 @@ Object.entries(allImages).forEach(([key, func]) => {
           }
         }
       }
-
+          
+      > .github > a {
+        color: var(--primary);
+      }
+      > .linkedin > a {
+          color: var(--secondary);
+      }
+        
+      
       > .resume {
         margin: 0 0 0 0.25rem;
 
