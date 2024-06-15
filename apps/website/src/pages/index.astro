@@ -80,7 +80,7 @@ Object.entries(allImages).forEach(([key, func]) => {
             ? [project.year, project.organization].join(" · ")
             : project.year;
 
-        const fadeDelay = `${(index + 1) * 250}ms`
+        const fadeDelay = `${(index + 1) * 150}ms`
         return (
           <Bento class=`project pos-${index+1}` style={{ "--fade-delay": fadeDelay }} data-featured={project.show === "featured"}>
             <Link href={project.links[0].url}>
@@ -228,6 +228,10 @@ Object.entries(allImages).forEach(([key, func]) => {
 
     &:focus-within .card > img,
     .card:hover > img {
+      @media (prefers-reduced-motion) {
+        scale: 1;
+      }
+
       scale: 1.05;
     }
 

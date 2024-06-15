@@ -23,6 +23,11 @@ const { class: className, ...props } = Astro.props;
 
     --fade-delay: 0ms;
 
+    @media (prefers-reduced-motion) {
+      animation: none;
+      opacity: 1;
+    }
+
     animation: fade-in ease 1s;
     animation-delay: var(--fade-delay);
     animation-fill-mode: forwards;
