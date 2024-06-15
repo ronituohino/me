@@ -4,8 +4,7 @@ import puppeteer from "puppeteer";
   const browser = await puppeteer.launch({
     // Keep same platform because pdf prints look different
     product: "firefox",
-    // Without headless the pdf looks weird
-    headless: false,
+    headless: true,
   });
   const page = await browser.newPage();
   await page.goto("http://localhost:5173");
