@@ -22,16 +22,18 @@ const { class: className, ...props } = Astro.props;
     }
 
     --fade-delay: 0ms;
+    --initial-opacity: 0;
+    --initial-animation: fade-in ease 1s;
+
+    opacity: var(--initial-opacity);
+    animation: var(--initial-animation);
+    animation-delay: var(--fade-delay);
+    animation-fill-mode: forwards;
 
     @media (prefers-reduced-motion) {
       animation: none;
       opacity: 1;
     }
-
-    animation: fade-in ease 1s;
-    animation-delay: var(--fade-delay);
-    animation-fill-mode: forwards;
-    opacity: 0;
   }
 
   @keyframes fade-in {

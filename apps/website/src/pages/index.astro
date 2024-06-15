@@ -11,6 +11,7 @@ import {
   TbBrandGithub,
   TbBrandLinkedin,
   TbMail,
+  TbStarFilled
 } from "solid-icons/tb";
 import { Image } from "astro:assets";
 
@@ -91,8 +92,9 @@ Object.entries(allImages).forEach(([key, func]) => {
                   src={images[`${project.slug}.png`]()}
                   alt={project.description}
                 />
+                {project.show === "featured" && <TbStarFilled class="featured-star" />}
                 <div class="details">
-                  <p class="title">{project.title}</p>
+                  <p>{project.title}</p>
                   <p class="info">{infoLine}</p>
                 </div>
               </div>
@@ -120,6 +122,9 @@ Object.entries(allImages).forEach(([key, func]) => {
   }
 
   .intro {
+    --initial-opacity: 1;
+    --initial-animation: none;
+
     padding: 1rem;
     @media only screen and (min-width: @grid-1-bp) {
       grid-column: span 2;
@@ -265,6 +270,14 @@ Object.entries(allImages).forEach(([key, func]) => {
           #0000009c 50%,
           #000000f3 100%
         );
+      }
+
+      .featured-star {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        color: var(--primary);
+        filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 1));
       }
 
       .details {

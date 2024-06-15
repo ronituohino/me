@@ -113,9 +113,7 @@ const ogHref = `${Astro.site}og.png`;
     <style lang="less">
       :root {
         --white: hsl(0, 0%, 92%);
-        --black: hsl(0, 0%, 8%);
         --dim: hsl(0, 0%, 50%);
-        --link: #2d3157;
         --background: #141414;
         --primary: #fecaff;
         --secondary: #01b1ff;
@@ -126,6 +124,8 @@ const ogHref = `${Astro.site}og.png`;
         --bento-gap: 0.5rem;
 
         --content-padding: 1rem;
+        /* If you update this, remember to update 
+        body::before and ::after */
         --max-width: 768px;
 
         --transition-speeds: 150ms;
@@ -148,8 +148,9 @@ const ogHref = `${Astro.site}og.png`;
         font-weight: var(--font-weight-normal);
       }
       body {
-        background-image: url("/public/spot.svg");
+        background-image: url("/spot.svg");
         background-size: 40px 40px;
+        background-position: top;
       }
       main {
         position: relative;
@@ -158,31 +159,41 @@ const ogHref = `${Astro.site}og.png`;
         padding: var(--content-padding) var(--content-padding);
         background-color: #141414;
       }
-      main::before {
+
+      body::before {
         content: "";
         position: absolute;
         top: 0;
-        left: -300px;
+        right: calc(var(--max-width) + ((100vw - var(--max-width)) / 2));
         background: linear-gradient(
           90deg,
           transparent 0%,
           var(--background) 100%
         );
         height: 100%;
-        width: 300px;
+        width: calc((100vw - var(--max-width)) / 2);
+
+        /* --max-width * 2 + 2 * width */
+        @media only screen and (min-width: 1368px) {
+          width: 300px;
+        }
       }
-      main::after {
+      body::after {
         content: "";
         position: absolute;
         top: 0;
-        right: -300px;
+        left: calc(var(--max-width) + ((100vw - var(--max-width)) / 2));
         background: linear-gradient(
           270deg,
           transparent 0%,
           var(--background) 100%
         );
         height: 100%;
-        width: 300px;
+        width: calc((100vw - var(--max-width)) / 2);
+
+        @media only screen and (min-width: 1368px) {
+          width: 300px;
+        }
       }
     </style>
   </body>
