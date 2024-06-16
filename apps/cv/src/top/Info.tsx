@@ -21,7 +21,7 @@ export function Info() {
       <a href="mailto:tuohinoroni@gmail.com">tuohinoroni@gmail.com</a>
       <a href="https://www.github.com/ronituohino">github.com/ronituohino</a>
       <a href="https://www.linkedin.com/in/ronituohino/">in/ronituohino</a>
-      <a href="https://ronituohino.fi">ronituohino.fi</a>
+      <a href="https://ronituohino.com">ronituohino.fi</a>
     </section>
   );
 }
