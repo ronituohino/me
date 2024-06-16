@@ -52,3 +52,9 @@ VITE_PHONE=
 ```
 
 Start development mode and print out using firefox with appropriate settings.
+
+## Deployment
+
+Deployment is done automatically to
+[Cloudflare Pages](https://pages.cloudflare.com/) using GitHub Actions whenever
+something is pushed onto the main branch.
