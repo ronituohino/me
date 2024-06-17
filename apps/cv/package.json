@@ -1,0 +1,26 @@
+{
+  "name": "cv",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "dev-hide": "VITE_HIDE=true vite",
+    "print": "ts-node print.ts",
+    "build": "./pdf.sh"
+  },
+  "dependencies": {
+    "@fontsource-variable/open-sans": "^5.0.29",
+    "puppeteer": "^22.6.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.1.0",
+    "concurrently": "^8.2.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^4.6.4",
+    "typescript-plugin-css-modules": "^5.0.1",
+    "vite": "^3.1.0"
+  }
+}

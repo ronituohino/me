@@ -1,0 +1,13 @@
+.tech {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tech > li > h3 {
+  margin-bottom: 4px;
+}
+.tech > li > p {
+  color: var(--color-detail);
+}

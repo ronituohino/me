@@ -1,0 +1,7 @@
+.skillList {
+  list-style-type: none;
+}
+
+.skillList > li {
+  margin-top: 12px;
+}

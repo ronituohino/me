@@ -1,0 +1,99 @@
+---
+import "@fontsource-variable/inter";
+import Link from "@components/Link.astro";
+
+type Props = {
+  title: string;
+  description: string;
+  class?: string;
+};
+
+const { title, description, class: className } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main class:list={[className]}>
+      <slot />
+      <footer>
+        Made by <Link href="https://github.com/ronituohino">me</Link>, using <Link
+          href="https://astro.build/">astro</Link
+        >.
+      </footer>
+    </main>
+
+    <style is:global>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      ul,
+      li {
+        list-style-type: none;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      img {
+        height: auto;
+        max-width: 100%;
+        vertical-align: middle;
+        font-style: italic;
+      }
+    </style>
+
+    <style>
+      :root {
+        --white: hsl(0, 0%, 92%);
+        --black: hsl(0, 0%, 8%);
+        --dim: hsl(0, 0%, 50%);
+        --background: #2e2e2e;
+
+        --content-padding: 0 1rem;
+        --max-width: 768px;
+
+        /* Breakpoints 
+          1024px
+          768px
+          540px
+        */
+
+        font-size: 20px;
+        color: var(--white);
+        background: var(--background);
+      }
+      html {
+        font-family: "Inter Variable", Ubuntu, sans-serif;
+        font-weight: 600;
+      }
+      main {
+        margin: 0 auto;
+        max-width: var(--max-width);
+        padding: var(--content-padding);
+      }
+      footer {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        color: var(--dim);
+      }
+    </style>
+  </body>
+</html>

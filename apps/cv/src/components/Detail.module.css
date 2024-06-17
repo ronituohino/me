@@ -1,0 +1,22 @@
+h3 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  color: var(--color-text);
+}
+
+.time {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--color-detail);
+  margin-left: 8px;
+}
+
+.description {
+  color: var(--color-detail);
+  margin-top: 16px;
+  margin-bottom: 8px;
+  white-space: pre-line;
+}

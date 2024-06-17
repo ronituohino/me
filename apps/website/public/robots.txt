@@ -1,0 +1,8 @@
+# https://ronituohino.fi/robots.txt
+
+# https://developers.google.com/search/docs/fundamentals/seo-starter-guide
+# https://developers.google.com/search/docs/crawling-indexing/robots/intro
+
+User-agent: *
+
+Sitemap: https://ronituohino.fi/sitemap.xml

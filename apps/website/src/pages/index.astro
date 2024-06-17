@@ -1,0 +1,164 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Link from "@components/Link.astro";
+import { projects } from "@packages/data/project";
+const shownProjects = projects.filter((p) => p.show);
+
+import {
+  TbBrandGithub,
+  TbBrandLinkedin,
+  TbMail,
+  TbArrowDown,
+} from "solid-icons/tb";
+import { Image } from "astro:assets";
+
+type ImagesObject = { [key: string]: Function };
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/images/**/*.{jpeg,jpg,png,gif}"
+) as ImagesObject;
+let images: ImagesObject = {};
+Object.entries(allImages).forEach(([key, func]) => {
+  const [_a, _b, _c, image] = key.split("/");
+  images[image] = func;
+});
+---
+
+<Layout
+  title="Roni Tuohino"
+  description="Hey, need a website or service? Hit me up!"
+>
+  <hgroup>
+    <h1>Roni Tuohino</h1>
+    <p>
+      I am a Finnish fullstack developer. I enjoy designing and building
+      websites and services.
+    </p>
+  </hgroup>
+
+  <ul class="links">
+    <li>
+      <Link
+        aria-label="See my GitHub profile"
+        href="https://github.com/ronituohino"
+      >
+        <TbBrandGithub />
+      </Link>
+    </li>
+
+    <li>
+      <Link
+        aria-label="See my Linkedin profile"
+        href="https://www.linkedin.com/in/ronituohino/"
+      >
+        <TbBrandLinkedin />
+      </Link>
+    </li>
+
+    <li>
+      <Link aria-label="Send me an email" href="mailto:tuohinoroni@gmail.com">
+        <TbMail />
+      </Link>
+    </li>
+
+    <li class="resume">
+      <Link href="/ronituohino-resume.pdf"><TbArrowDown />Résumé</Link>
+    </li>
+  </ul>
+
+  <section class="projects">
+    <h2>Projects that I've worked on</h2>
+    <ol>
+      {
+        shownProjects.map((project) => {
+          return (
+            <li class="project">
+              <Link href={project.links[0].url}>
+                <div class="card">
+                  <Image
+                    src={images[project.image.file]()}
+                    alt={project.image.alt}
+                  />
+                  <div class="details">
+                    <p class="title">{project.title}</p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </section>
+</Layout>
+
+<style>
+  hgroup > h1 {
+    margin-top: 4rem;
+    font-size: 2.5rem;
+    font-weight: 750;
+  }
+  hgroup > p {
+    margin-top: 0.5rem;
+    max-width: 16.5rem;
+    color: var(--dim);
+  }
+
+  .links {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .links > li > a {
+    display: flex;
+    font-size: 2rem;
+    color: var(--dim);
+    transition: color 150ms ease-in-out;
+  }
+  .links > li > a:hover,
+  .links > li > a:focus-visible {
+    color: var(--white);
+  }
+
+  h2 {
+  }
+  .projects {
+    margin-top: 4rem;
+  }
+  .projects > ol {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-content: center;
+    grid-gap: 0.5rem;
+  }
+
+  .card {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: scale 150ms ease-in-out;
+  }
+  .card:hover,
+  .project > a:focus-visible > .card {
+    scale: 1.025;
+  }
+  .card > img {
+    object-fit: contain;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    bottom: -5px;
+    background: linear-gradient(#4e4e4e00, #000000c0);
+  }
+  .details {
+    position: absolute;
+    left: 0.5rem;
+    bottom: 0.5rem;
+
+    font-weight: 600;
+    color: var(--white);
+  }
+</style>

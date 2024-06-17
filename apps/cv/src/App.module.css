@@ -1,0 +1,25 @@
+main {
+  position: relative;
+  display: grid;
+  grid-template-columns: 61.8% auto;
+  grid-template-rows: auto auto;
+  row-gap: var(--row-gap);
+  column-gap: var(--column-gap);
+  grid-template-areas: "header info" "left right";
+  padding: var(--padding);
+  height: 100vh;
+}
+
+.left {
+  grid-area: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right {
+  grid-area: right;
+  display: flex;
+  flex-direction: column;
+  gap: var(--row-gap);
+}
