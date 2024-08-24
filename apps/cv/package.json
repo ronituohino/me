@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "dev-hide": "VITE_HIDE=true vite",
-    "print": "ts-node print.ts",
+    "print": "node --loader ts-node/esm print.ts",
     "build": "./pdf.sh"
   },
   "dependencies": {
@@ -19,7 +19,6 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "concurrently": "^8.2.2",
-    "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
     "typescript-plugin-css-modules": "^5.0.1",
     "vite": "^5.4.2"

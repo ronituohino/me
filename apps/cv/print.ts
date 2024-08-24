@@ -3,7 +3,7 @@ import puppeteer from "puppeteer";
 (async () => {
   const browser = await puppeteer.launch({
     // Keep same platform because pdf prints look different
-    product: "firefox",
+    browser: "firefox",
     headless: true,
   });
   const page = await browser.newPage();

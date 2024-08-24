@@ -9,7 +9,7 @@ export function Experience() {
         <Detail
           title="Junior Developer"
           place="Nelonen Media"
-          time="5/2022 - present"
+          time="5/2022 - 8/2024"
         >
           <ul>
             <li>

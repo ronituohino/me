@@ -1,0 +1,10 @@
+{
+  "slug": "gparticles",
+  "title": "SCAS",
+  "organization": "",
+  "year": 2023,
+  "description": "Cryptocurrency security auditing tool.",
+  "technologies": ["Tauri", "Vite", "TypeScript", "Radix"],
+  "links": [],
+  "show": "hidden"
+}

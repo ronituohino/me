@@ -6,11 +6,9 @@ It contains two applications in the `apps` folder:
 - résumé (cv)
 - portfolio (website)
 
-Shared data is stored in the `packages` folder.
-
 ## Developing
 
-Make sure you have npm installed.
+Make sure you have Node (>=v20) and npm installed.
 
 Install dependencies.
 
@@ -30,6 +28,7 @@ npm run dev
 
 ## Building
 
+Build only runs properly on Linux systems.  
 Install firefox for puppeteer.
 
 ```

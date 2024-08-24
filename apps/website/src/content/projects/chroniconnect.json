@@ -1,0 +1,13 @@
+{
+  "slug": "chroniconnect",
+  "title": "Chroniconnect",
+  "organization": "Junction",
+  "year": 2023,
+  "description": "48-hour-long hackathon project for Tietoevry.",
+  "technologies": ["React", "Vite", "MUI"],
+  "links": [
+    "https://tuskaproject-b09f5.web.app/",
+    "https://github.com/huongtxdo/tuska-junction2023"
+  ],
+  "show": "front"
+}

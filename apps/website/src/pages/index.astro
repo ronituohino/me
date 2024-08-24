@@ -1,10 +1,20 @@
 ---
+import { getCollection} from "astro:content";
+
 import Layout from "@layouts/Layout.astro";
 import Link from "@components/Link.astro";
 import Bento from "@components/Bento.astro";
 
-import { projects } from "@packages/data/project";
-const shownProjects = projects.filter((p) => p.show !== "hidden");
+const shownProjects = await getCollection("projects", ({data}) => data.show !== "hidden")
+const sortedProjects = shownProjects.toSorted((a,b) => {
+  if (a.data.year > b.data.year) {
+    return -1
+  } else if(b.data.year > a.data.year) {
+    return 1
+  } else {
+    return 0
+  }
+})
 
 import {
   TbDownload,
@@ -77,31 +87,31 @@ Object.entries(allImages).forEach(([key, func]) => {
     </Bento>
 
     {
-      shownProjects.map((project, index) => {
+      sortedProjects.map((project, index) => {
         const infoLine =
-          project.organization !== ""
-            ? [project.year, project.organization].join(" · ")
-            : project.year;
+          project.data.organization !== ""
+            ? [project.data.year, project.data.organization].join(" · ")
+            : project.data.year;
 
         const fadeDelay = `${(index + 1) * 150}ms`
         return (
           <Bento 
             class=`project pos-${index+1}` 
             style={{ "--fade-delay": fadeDelay }} 
-            data-featured={project.show === "featured"}
+            data-featured={project.data.show === "featured"}
           >
-            <Link href={project.links[0].url} 
-              ariaLabel={`${project.title}: 
-              ${project.description}
-              (${infoLine}${project.show === "featured" ? ", featured" : ""})`}>
+            <Link href={project.data.links[0]} 
+              ariaLabel={`${project.data.title}: 
+              ${project.data.description}
+              (${infoLine}${project.data.show === "featured" ? ", featured" : ""})`}>
               <div class="card">
                 <Image
-                  src={images[`${project.slug}.png`]()}
-                  alt={project.description}
+                  src={images[`${project.id}.png`]()}
+                  alt={project.data.description}
                 />
-                {project.show === "featured" && <TbStar class="featured-star" />}
+                {project.data.show === "featured" && <TbStar class="featured-star" />}
                 <div class="details">
-                  <p>{project.title}</p>
+                  <p>{project.data.title}</p>
                   <p class="info">{infoLine}</p>
                 </div>
               </div>
@@ -265,12 +275,9 @@ Object.entries(allImages).forEach(([key, func]) => {
         height: 80px;
         bottom: -5px;
         background: linear-gradient(
-        rgba(0, 0, 0, 0),
-        rgba(0, 0, 0, 0.1),
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0.4),
-        rgba(0, 0, 0, 0.6),
-        rgba(0, 0, 0, 0.9),
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.2) 30%,
+        rgba(0, 0, 0, 0.9) 100%,
         );
       }
 

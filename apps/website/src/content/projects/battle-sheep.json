@@ -1,0 +1,13 @@
+{
+  "slug": "battle-sheep",
+  "title": "Battle Sheep",
+  "organization": "University of Helsinki",
+  "year": 2022,
+  "description": "Web version of the popular board game with an AI opponent.",
+  "technologies": ["React", "Vite", "TypeScript"],
+  "links": [
+    "https://battle-sheep-game.web.app/",
+    "https://github.com/ronituohino/battle-sheep"
+  ],
+  "show": "front"
+}

@@ -1,0 +1,13 @@
+{
+  "slug": "viitevarasto",
+  "title": "Viitevarasto",
+  "organization": "University of Helsinki",
+  "year": 2022,
+  "description": "A BibTeX references management system.",
+  "technologies": ["Flask", "Postgres"],
+  "links": [
+    "https://viitevarasto.fly.dev/",
+    "https://github.com/ronituohino/viitevarasto"
+  ],
+  "show": "front"
+}
