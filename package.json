@@ -1,4 +1,5 @@
 {
+  "name": "me",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev"

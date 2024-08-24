@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
+  "tasks": {
     "cv#build": {
       "outputs": ["../website/ronituohino-resume.pdf"],
       "cache": false

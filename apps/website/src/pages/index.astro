@@ -11,7 +11,7 @@ import {
   TbBrandGithub,
   TbBrandLinkedin,
   TbMail,
-  TbStarFilled
+  TbStar
 } from "solid-icons/tb";
 import { Image } from "astro:assets";
 
@@ -43,7 +43,7 @@ Object.entries(allImages).forEach(([key, func]) => {
       </div>
 
       <ul class="links">
-        <li class="github">
+        <li>
           <Link
             ariaLabel="See my GitHub profile"
             href="https://github.com/ronituohino"
@@ -51,7 +51,7 @@ Object.entries(allImages).forEach(([key, func]) => {
             <TbBrandGithub />
           </Link>
         </li>
-        <li class="linkedin">
+        <li>
           <Link
             ariaLabel="See my Linkedin profile"
             href="https://www.linkedin.com/in/ronituohino/"
@@ -99,7 +99,7 @@ Object.entries(allImages).forEach(([key, func]) => {
                   src={images[`${project.slug}.png`]()}
                   alt={project.description}
                 />
-                {project.show === "featured" && <TbStarFilled class="featured-star" />}
+                {project.show === "featured" && <TbStar class="featured-star" />}
                 <div class="details">
                   <p>{project.title}</p>
                   <p class="info">{infoLine}</p>
@@ -208,15 +208,7 @@ Object.entries(allImages).forEach(([key, func]) => {
             stroke-width: 1.5px;
           }
         }
-      }
-          
-      > .github > a {
-        color: var(--primary);
-      }
-      > .linkedin > a {
-          color: var(--secondary);
-      }
-        
+      } 
       
       > .resume {
         margin: 0 0 0 0.25rem;
@@ -270,12 +262,15 @@ Object.entries(allImages).forEach(([key, func]) => {
         position: absolute;
         z-index: 1;
         width: 100%;
-        height: 40%;
+        height: 80px;
         bottom: -5px;
         background: linear-gradient(
-          #00000000 0%,
-          #0000009c 50%,
-          #000000f3 100%
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.9),
         );
       }
 
@@ -283,7 +278,7 @@ Object.entries(allImages).forEach(([key, func]) => {
         position: absolute;
         top: 0.5rem;
         left: 0.5rem;
-        color: var(--primary);
+        color: var(--white);
         filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 1));
       }
 
