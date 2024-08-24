@@ -287,6 +287,26 @@ Object.entries(allImages).forEach(([key, func]) => {
         left: 0.5rem;
         color: var(--white);
         filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 1));
+        
+        opacity: 0;
+        animation: star;
+        animation-duration: 250ms;
+        animation-fill-mode: forwards;
+        animation-delay: calc(var(--fade-delay) + 1.5s);
+        @media (prefers-reduced-motion) {
+          animation: none;
+          opacity: 1;
+        }
+        @keyframes star {
+          0% {
+            transform: translateY(3px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0%);
+            opacity: 1;
+          }
+        }
       }
 
       .details {
