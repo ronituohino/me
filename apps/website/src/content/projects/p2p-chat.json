@@ -1,0 +1,10 @@
+{
+  "slug": "p2p-chat",
+  "title": "P2P Chat",
+  "organization": "University of Helsinki",
+  "year": 2024,
+  "description": "Peer-to-peer chat application.",
+  "technologies": ["Textual", "Python"],
+  "links": ["https://github.com/ronituohino/p2p-chat"],
+  "show": "front"
+}

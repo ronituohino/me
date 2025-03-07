@@ -6,7 +6,7 @@
   "description": "Web version of the popular board game with an AI opponent.",
   "technologies": ["React", "Vite", "TypeScript"],
   "links": [
-    "https://battle-sheep-game.web.app/",
+    "https://battle-sheep.vercel.app/",
     "https://github.com/ronituohino/battle-sheep"
   ],
   "show": "front"

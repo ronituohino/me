@@ -4,7 +4,7 @@
   "organization": "Nelonen Media",
   "year": 2024,
   "description": "Finnish podcast streaming service.",
-  "technologies": ["Next", "React", "Storybook", "Docker"],
+  "technologies": ["Next.js", "React", "Storybook", "Docker"],
   "links": ["https://supla.fi"],
   "show": "featured"
 }

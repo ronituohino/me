@@ -12,9 +12,6 @@
     "MongoDB",
     "Docker"
   ],
-  "links": [
-    "https://recom-pnxd5duksa-lz.a.run.app/",
-    "https://github.com/ronituohino/doodle-design"
-  ],
+  "links": ["https://github.com/ronituohino/doodle-design"],
   "show": "front"
 }

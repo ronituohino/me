@@ -4,7 +4,7 @@
   "organization": "",
   "year": 2023,
   "description": "Cryptocurrency security auditing tool.",
-  "technologies": ["Tauri", "Vite", "TypeScript", "Radix"],
+  "technologies": ["Tauri", "Vite", "TypeScript", "Radix UI"],
   "links": [],
   "show": "hidden"
 }

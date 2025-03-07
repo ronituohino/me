@@ -1,0 +1,13 @@
+{
+  "slug": "search-engine",
+  "title": "Search Engine",
+  "organization": "University of Helsinki",
+  "year": 2025,
+  "description": "Search engine for the internet.",
+  "technologies": ["Astro", "Go", "Python", "Kubernetes"],
+  "links": [
+    "https://ronituohino.github.io/swap/",
+    "https://github.com/ronituohino/swap"
+  ],
+  "show": "front"
+}

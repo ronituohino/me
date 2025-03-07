@@ -3,11 +3,8 @@
   "title": "GParticles",
   "organization": "",
   "year": 2021,
-  "description": "Mobile art project on simulating as many particles as possible.",
+  "description": "Mobile art project about simulating lots of particles.",
   "technologies": ["Unity"],
-  "links": [
-    "https://play.google.com/store/apps/details?id=com.Tuohino.GParticles",
-    "https://github.com/ronituohino/gparticles"
-  ],
+  "links": ["https://github.com/ronituohino/gparticles"],
   "show": "front"
 }
