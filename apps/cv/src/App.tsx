@@ -13,12 +13,10 @@ export function App() {
       <main>
         <Profile />
         <Info />
-
         <div className={styles.left}>
           <Experience />
           <Education />
         </div>
-
         <div className={styles.right}>
           <Skills />
           <Technologies />

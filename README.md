@@ -3,10 +3,10 @@
 This is a Monorepo managed with [Turbo](https://turbo.build/repo).  
 It contains two applications in the `apps` folder:
 
-- résumé (cv)
-- portfolio (website)
+- cv
+- website
 
-## Developing
+## Development
 
 Make sure you have Node (>=v20) and npm installed.
 
@@ -21,11 +21,6 @@ Start development servers for both apps.
 ```
 npm run dev
 ```
-
-### TODO
-
-- Add a cool "scroll to top" button
-- Add inViewport activated initial animations using IntersectionObserver?
 
 ## Building
 
