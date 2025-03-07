@@ -25,6 +25,7 @@ npm run dev
 ### TODO
 
 - Add a cool "scroll to top" button
+- Add inViewport activated initial animations using IntersectionObserver?
 
 ## Building
 

@@ -9,7 +9,7 @@ export function Experience() {
         <Detail
           title="Junior Developer"
           place="Nelonen Media"
-          time="5/2022 - 8/2024"
+          time="5/2022 - present"
         >
           <ul>
             <li>
@@ -19,7 +19,6 @@ export function Experience() {
             </li>
             <li>Collaborated with senior developers to rewrite both sites.</li>
             <li>Created a client-side analytics integration independently.</li>
-            <li>Added new features and fixed existing ones.</li>
           </ul>
         </Detail>
         <Detail
@@ -29,13 +28,6 @@ export function Experience() {
         >
           <ul>
             <li>Gained leadership experience.</li>
-          </ul>
-        </Detail>
-        <Detail title="Software Tester" place="Testlio" time="1/2019">
-          <ul>
-            <li>
-              Localized apps, reported bugs, and completed technical analysis.
-            </li>
           </ul>
         </Detail>
         <Detail

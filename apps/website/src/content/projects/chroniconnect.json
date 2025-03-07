@@ -3,7 +3,7 @@
   "title": "Chroniconnect",
   "organization": "Junction",
   "year": 2023,
-  "description": "48-hour-long hackathon project for Tietoevry.",
+  "description": "48-hour-long hackathon app mockup, which connects people with chronic pain.",
   "technologies": ["React", "Vite", "MUI"],
   "links": [
     "https://tuskaproject-b09f5.web.app/",
