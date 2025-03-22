@@ -1,6 +1,5 @@
 ---
-import "@fontsource-variable/inter";
-import interWoff2 from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
+import { Background } from "@components/Background";
 
 const title = "Roni Tuohino";
 const description =
@@ -69,14 +68,20 @@ const ogHref = `${Astro.site}og.png`;
       rel="preload"
       as="font"
       type="font/woff2"
-      href={interWoff2}
-      crossorigin
+      href="/fonts/ark-pixel-16px-proportional-latin.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/ark-pixel-10px-proportional-latin.woff2"
     />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
+    <Background client:only />
     <main>
       <slot />
     </main>
@@ -115,8 +120,6 @@ const ogHref = `${Astro.site}og.png`;
         --white: hsl(0, 0%, 92%);
         --dim: hsl(0, 0%, 50%);
         --background: #141414;
-        --primary: #fecaff;
-        --secondary: #01b1ff;
 
         --bento-min-size: 220px;
         --bento-border: #2c2c2c;
@@ -143,21 +146,30 @@ const ogHref = `${Astro.site}og.png`;
         color: var(--white);
         background: var(--background);
       }
-      html {
-        font-family: "Inter Variable", Ubuntu, sans-serif;
-        font-weight: var(--font-weight-normal);
+
+      @font-face {
+        font-family: "ArkPixel10";
+        src: url("/fonts/ark-pixel-10px-proportional-latin.woff2") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
       }
-      body {
-        background-image: url("/spot.svg");
-        background-size: 40px 40px;
-        background-position: top;
+      @font-face {
+        font-family: "ArkPixel16";
+        src: url("/fonts/ark-pixel-16px-proportional-latin.woff2") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      html {
+        font-family: "ArkPixel10", Ubuntu, sans-serif;
+        font-weight: var(--font-weight-normal);
       }
       main {
         position: relative;
         margin: 0 auto;
         max-width: var(--max-width);
-        padding: var(--content-padding) var(--content-padding);
-        background-color: #141414;
       }
     </style>
   </body>

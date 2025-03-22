@@ -1,11 +1,9 @@
 ---
-import { getCollection} from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
+import type {ProjectSchema} from "@content/config"
 
-import Layout from "@layouts/Layout.astro";
-import Link from "@components/Link.astro";
-import Bento from "@components/Bento.astro";
 
-const shownProjects = await getCollection("projects", ({data}) => data.show !== "hidden")
+const shownProjects = await getCollection("projects", ({data}: { data: ProjectSchema}) => data.show !== "hidden") satisfies CollectionEntry<ProjectSchema>[]
 const sortedProjects = shownProjects.toSorted((a,b) => {
   if (a.data.year > b.data.year) {
     return -1
@@ -16,24 +14,10 @@ const sortedProjects = shownProjects.toSorted((a,b) => {
   }
 })
 
-import {
-  TbDownload,
-  TbBrandGithub,
-  TbBrandLinkedin,
-  TbMail,
-  TbStar
-} from "solid-icons/tb";
-import { Image } from "astro:assets";
+import Layout from "@layouts/Layout.astro";
+import Link from "@components/Link.astro";
+import Bento from "@components/Bento.astro";
 
-type ImagesObject = { [key: string]: Function };
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/images/**/*.{jpeg,jpg,png,gif}"
-) as ImagesObject;
-let images: ImagesObject = {};
-Object.entries(allImages).forEach(([key, func]) => {
-  const [_a, _b, _c, image] = key.split("/");
-  images[image] = func;
-});
 ---
 
 <Layout>
@@ -58,7 +42,7 @@ Object.entries(allImages).forEach(([key, func]) => {
             ariaLabel="See my GitHub profile"
             href="https://github.com/ronituohino"
           >
-            <TbBrandGithub />
+            Git
           </Link>
         </li>
         <li>
@@ -66,21 +50,21 @@ Object.entries(allImages).forEach(([key, func]) => {
             ariaLabel="See my Linkedin profile"
             href="https://www.linkedin.com/in/ronituohino/"
           >
-            <TbBrandLinkedin />
+            Li
           </Link>
         </li>
         <li>
           <Link
             ariaLabel="Send me an email"
-            href="mailto:tuohinoroni@gmail.com"
+            href="mailto:rt@ronituohino.com"
           >
-            <TbMail />
+            Mail
           </Link>
         </li>
 
         <li class="resume">
           <Link href="/ronituohino-resume.pdf" title="Download résumé"
-            ><TbDownload /></Link
+            >Down</Link
           >
         </li>
       </ul>
@@ -105,11 +89,8 @@ Object.entries(allImages).forEach(([key, func]) => {
               ${project.data.description}
               (${infoLine}${project.data.show === "featured" ? ", featured" : ""})`}>
               <div class="card">
-                <Image
-                  src={images[`${project.id}.png`]()}
-                  alt={project.data.description}
-                />
-                {project.data.show === "featured" && <TbStar class="featured-star" />}
+                
+                {project.data.show === "featured" && <p>Star!</p>}
                 <div class="details">
                   <p>{project.data.title}</p>
                   <p class="info">{infoLine}</p>
