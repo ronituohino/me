@@ -1,11 +1,11 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import type { ProjectSchema } from "@content/config";
 
-const shownProjects = (await getCollection(
+const shownProjects = await getCollection(
   "projects",
   ({ data }: { data: ProjectSchema }) => data.show !== "hidden"
-)) satisfies CollectionEntry<ProjectSchema>[];
+);
 
 const sortedProjects = shownProjects.toSorted((a, b) => {
   if (a.data.year > b.data.year) {
@@ -19,6 +19,7 @@ const sortedProjects = shownProjects.toSorted((a, b) => {
 
 import Layout from "@layouts/Layout.astro";
 import Link from "@components/Link.astro";
+import { Dialog } from "@components/Dialog";
 ---
 
 <Layout>
@@ -58,35 +59,36 @@ import Link from "@components/Link.astro";
       <Link href="/ronituohino-resume.pdf" title="Download résumé">Down</Link>
     </li>
   </ul>
-  <ol>
-    {
-      sortedProjects.map((project) => {
-        const infoLine =
-          project.data.organization !== ""
-            ? [project.data.year, project.data.organization].join(" · ")
-            : project.data.year;
 
-        return (
-          <li>
-            <Link
-              href={project.data.links[0]}
-              ariaLabel={`${project.data.title}: 
-              ${project.data.description}
-              (${infoLine}${project.data.show === "featured" ? ", featured" : ""})`}
-            >
-              <div class="card">
-                {project.data.show === "featured" && <p>Star!</p>}
-                <div class="details">
-                  <p>{project.data.title}</p>
-                  <p class="info">{infoLine}</p>
+  <Dialog>
+    <ol>
+      {
+        sortedProjects.map((project) => {
+          const infoLine =
+            project.data.organization !== ""
+              ? [project.data.year, project.data.organization].join(" · ")
+              : project.data.year;
+
+          return (
+            <li>
+              <Link
+                href={project.data.links[0]}
+                ariaLabel={`${project.data.title}: 
+                ${project.data.description}
+                (${infoLine}${project.data.show === "featured" ? ", featured" : ""})`}
+              >
+                <div class="card">
+                  {project.data.show === "featured" && <p>Star!</p>}
+                  <div class="details">
+                    <p>{project.data.title}</p>
+                    <p class="info">{infoLine}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </li>
-        );
-      })
-    }
-  </ol>
+              </Link>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </Dialog>
 </Layout>
-
-<style lang="less"></style>

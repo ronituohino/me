@@ -151,7 +151,6 @@ export async function loadImage({
 export function drawSprite({
   context,
   image,
-  frame,
   position,
   scale = 1,
   anchorRatios = {

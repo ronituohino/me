@@ -82,6 +82,7 @@ const ogHref = `${Astro.site}og.png`;
   </head>
   <body>
     <Background client:only />
+
     <main>
       <slot />
     </main>
@@ -105,6 +106,16 @@ const ogHref = `${Astro.site}og.png`;
 
       a {
         text-decoration: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 400;
+        font-family: "ArkPixel16", "Ubuntu", sans-serif;
       }
 
       img {
@@ -133,16 +144,6 @@ const ogHref = `${Astro.site}og.png`;
 
         --transition-speeds: 150ms;
 
-        --font-size-xl: 50px;
-        --font-size-lg: 36px;
-        --font-size-md: 20px;
-        --font-size-sm: 10px;
-
-        --font-weight-bold: 750;
-        --font-weight-normal: 600;
-        --font-weight-light: 400;
-
-        font-size: var(--font-size-md);
         color: var(--white);
         background: var(--background);
       }
@@ -166,8 +167,9 @@ const ogHref = `${Astro.site}og.png`;
 
       html {
         font-family: "ArkPixel10", Ubuntu, sans-serif;
-        font-weight: var(--font-weight-normal);
+        line-height: 1;
       }
+
       main {
         position: relative;
         margin: 0 auto;

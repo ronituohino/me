@@ -3,7 +3,8 @@ import { drawSprite, loadImage, disableSmoothing } from "./aseprite";
 
 import styles from "./Background.module.css";
 
-const BACKGROUND_SIZE = 256;
+const BACKGROUND_WIDTH = 320;
+const BACKGROUND_HEIGHT = 180;
 
 function renderBackground(canvas: HTMLCanvasElement) {
   canvas.width = window.innerWidth;
@@ -14,29 +15,27 @@ function renderBackground(canvas: HTMLCanvasElement) {
     return;
   }
 
-  let ratioX = Math.floor(canvas.width / BACKGROUND_SIZE);
-  let ratioY = Math.floor(canvas.height / BACKGROUND_SIZE);
+  let ratioX = Math.floor(canvas.width / BACKGROUND_WIDTH);
+  let ratioY = Math.floor(canvas.height / BACKGROUND_HEIGHT);
 
   let ratio = Math.max(ratioX, ratioY);
-  if (ratioX < 2 || ratioY < 2) {
-    ratio = 2;
-  }
-  if (ratioX > 4) {
-    ratio = 4;
+  if (ratio < 1) {
+    ratio = 1;
   }
 
   const scale = ratio + 1;
+  document.body.style.fontSize = `${scale * 10}px`;
 
   disableSmoothing(context);
   drawSprite({
     context,
-    image: "senja-min",
+    image: "senja",
     frame: 0,
     position: {
-      x: ratioX > 4 ? (canvas.width - BACKGROUND_SIZE * scale) / 2 : 0,
+      x: 0,
       y: 0,
     },
-    scale: ratio + 1,
+    scale,
   });
 }
 
@@ -48,7 +47,7 @@ export function Background() {
       return;
     }
     await loadImage({
-      name: "senja-min",
+      name: "senja",
       basePath: "/senja",
     });
 
