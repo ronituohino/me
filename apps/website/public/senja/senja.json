@@ -1,19 +1,19 @@
 { "frames": {
-   "senja-min.aseprite": {
-    "frame": { "x": 0, "y": 0, "w": 256, "h": 256 },
+   "senja.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 320, "h": 180 },
     "rotated": false,
     "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 256, "h": 256 },
-    "sourceSize": { "w": 256, "h": 256 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 320, "h": 180 },
+    "sourceSize": { "w": 320, "h": 180 },
     "duration": 83
    }
  },
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.3.13-x64",
-  "image": "senja-min.png",
+  "image": "senja.png",
   "format": "RGBA8888",
-  "size": { "w": 256, "h": 256 },
+  "size": { "w": 320, "h": 180 },
   "scale": "1",
   "frameTags": [
   ],
