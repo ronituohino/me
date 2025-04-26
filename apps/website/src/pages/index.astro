@@ -23,42 +23,40 @@ import { Dialog } from "@components/Dialog";
 ---
 
 <Layout>
-  <hgroup>
-    <h1>Roni Tuohino</h1>
-    <p>Fullstack Developer</p>
-  </hgroup>
-  <p>
-    I enjoy engineering solutions.
-    <br />
-    Check out projects I've worked on and download my résumé!
-  </p>
-  <ul>
-    <li>
-      <Link
-        ariaLabel="See my GitHub profile"
-        href="https://github.com/ronituohino"
-      >
-        Git
-      </Link>
-    </li>
-    <li>
-      <Link
-        ariaLabel="See my Linkedin profile"
-        href="https://www.linkedin.com/in/ronituohino/"
-      >
-        Li
-      </Link>
-    </li>
-    <li>
-      <Link ariaLabel="Send me an email" href="mailto:rt@ronituohino.com">
-        Mail
-      </Link>
-    </li>
+  <section>
+    <hgroup>
+      <h1>Roni Tuohino</h1>
+      <p>Fullstack Developer</p>
+    </hgroup>
+    <p>I love building software and going climbing ^-^</p>
+    <ul>
+      <li>
+        <Link
+          ariaLabel="See my GitHub profile"
+          href="https://github.com/ronituohino"
+        >
+          Git
+        </Link>
+      </li>
+      <li>
+        <Link
+          ariaLabel="See my Linkedin profile"
+          href="https://www.linkedin.com/in/ronituohino/"
+        >
+          CV
+        </Link>
+      </li>
+      <li>
+        <Link ariaLabel="Send me an email" href="mailto:rt@ronituohino.com">
+          Mail
+        </Link>
+      </li>
 
-    <li class="resume">
-      <Link href="/ronituohino-resume.pdf" title="Download résumé">Down</Link>
-    </li>
-  </ul>
+      <li class="resume">
+        <Link href="/ronituohino-resume.pdf" title="Download résumé">Down</Link>
+      </li>
+    </ul>
+  </section>
 
   <Dialog>
     <ol>
@@ -92,3 +90,19 @@ import { Dialog } from "@components/Dialog";
     </ol>
   </Dialog>
 </Layout>
+
+<style>
+  section {
+    padding: var(--content-padding);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    gap: 1rem;
+  }
+</style>

@@ -3,7 +3,7 @@ import { Background } from "@components/Background";
 
 const title = "Roni Tuohino";
 const description =
-  "Roni Tuohino is a Finnish fullstack developer who enjoys engineering solutions.";
+  "Roni Tuohino is a Finnish fullstack developer who loves building software and going climbing.";
 const ogHref = `${Astro.site}og.png`;
 ---
 
@@ -116,6 +116,7 @@ const ogHref = `${Astro.site}og.png`;
       h6 {
         font-weight: 400;
         font-family: "ArkPixel16", "Ubuntu", sans-serif;
+        font-size: 2rem;
       }
 
       img {
@@ -129,17 +130,8 @@ const ogHref = `${Astro.site}og.png`;
     <style lang="less">
       :root {
         --white: hsl(0, 0%, 92%);
-        --dim: hsl(0, 0%, 50%);
-        --background: #141414;
-
-        --bento-min-size: 220px;
-        --bento-border: #2c2c2c;
-        --bento-bg: #151515;
-        --bento-gap: 0.5rem;
 
         --content-padding: 1rem;
-        /* If you update this, remember to update 
-        body::before and ::after */
         --max-width: 768px;
 
         --transition-speeds: 150ms;
@@ -167,13 +159,20 @@ const ogHref = `${Astro.site}og.png`;
 
       html {
         font-family: "ArkPixel10", Ubuntu, sans-serif;
+        font-size: 32px;
         line-height: 1;
+      }
+
+      @media screen and (max-width: 768px) {
+        html {
+          font-size: 24px;
+        }
       }
 
       main {
         position: relative;
+        height: 100vh;
         margin: 0 auto;
-        max-width: var(--max-width);
       }
     </style>
   </body>
