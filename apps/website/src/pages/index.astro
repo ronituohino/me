@@ -20,6 +20,8 @@ const sortedProjects = shownProjects.toSorted((a, b) => {
 import Layout from "@layouts/Layout.astro";
 import Link from "@components/Link.astro";
 import { Dialog } from "@components/Dialog";
+
+import Icon from "@components/Icon.astro";
 ---
 
 <Layout>
@@ -35,7 +37,7 @@ import { Dialog } from "@components/Dialog";
           ariaLabel="See my GitHub profile"
           href="https://github.com/ronituohino"
         >
-          Git
+          <Icon icon="github" />
         </Link>
       </li>
       <li>
@@ -43,17 +45,19 @@ import { Dialog } from "@components/Dialog";
           ariaLabel="See my Linkedin profile"
           href="https://www.linkedin.com/in/ronituohino/"
         >
-          CV
+          <Icon icon="linkedin" />
         </Link>
       </li>
       <li>
         <Link ariaLabel="Send me an email" href="mailto:rt@ronituohino.com">
-          Mail
+          <Icon icon="email" />
         </Link>
       </li>
 
       <li class="resume">
-        <Link href="/ronituohino-resume.pdf" title="Download résumé">Down</Link>
+        <Link href="/ronituohino-resume.pdf" title="Download résumé (CV)"
+          ><Icon icon="cv" /></Link
+        >
       </li>
     </ul>
   </section>

@@ -16,3 +16,9 @@ const { href, ariaLabel, title, class: className } = Astro.props;
   title={title}
   class:list={[className]}><slot /></a
 >
+
+<style>
+  a:focus-visible {
+    --color: red;
+  }
+</style>
