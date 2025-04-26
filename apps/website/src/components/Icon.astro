@@ -44,12 +44,13 @@ const mappings = {
 
 type Props = {
   icon: keyof typeof mappings;
+  class?: string;
 };
 
-const { icon } = Astro.props;
+const { icon, class: className } = Astro.props;
 ---
 
-<span></span>
+<span class={className}></span>
 
 <style
   define:vars={{

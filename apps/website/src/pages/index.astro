@@ -30,8 +30,16 @@ import Icon from "@components/Icon.astro";
       <h1>Roni Tuohino</h1>
       <p>Fullstack Developer</p>
     </hgroup>
-    <p>I love building software and going climbing ^-^</p>
-    <ul>
+
+    <p>I love building software and going climbing</p>
+
+    <ul class="links">
+      <li>
+        <Icon icon="note" />
+      </li>
+      <li>
+        <Icon icon="key" />
+      </li>
       <li>
         <Link
           ariaLabel="See my GitHub profile"
@@ -54,7 +62,7 @@ import Icon from "@components/Icon.astro";
         </Link>
       </li>
 
-      <li class="resume">
+      <li>
         <Link href="/ronituohino-resume.pdf" title="Download résumé (CV)"
           ><Icon icon="cv" /></Link
         >
@@ -62,7 +70,9 @@ import Icon from "@components/Icon.astro";
     </ul>
   </section>
 
-  <Dialog>
+  <Dialog client:only button="hi">test</Dialog>
+
+  <Dialog client:only button="test">
     <ol>
       {
         sortedProjects.map((project) => {
@@ -79,11 +89,11 @@ import Icon from "@components/Icon.astro";
                 ${project.data.description}
                 (${infoLine}${project.data.show === "featured" ? ", featured" : ""})`}
               >
-                <div class="card">
+                <div>
                   {project.data.show === "featured" && <p>Star!</p>}
-                  <div class="details">
+                  <div>
                     <p>{project.data.title}</p>
-                    <p class="info">{infoLine}</p>
+                    <p>{infoLine}</p>
                   </div>
                 </div>
               </Link>
@@ -108,5 +118,11 @@ import Icon from "@components/Icon.astro";
     align-items: end;
     justify-content: end;
     gap: 1rem;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
   }
 </style>
