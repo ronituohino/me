@@ -25,7 +25,7 @@ import Icon from "@components/Icon.astro";
 ---
 
 <Layout>
-  <section>
+  <section class="br">
     <hgroup>
       <h1>Roni Tuohino</h1>
       <p>Fullstack Developer</p>
@@ -35,10 +35,10 @@ import Icon from "@components/Icon.astro";
 
     <ul class="links">
       <li>
-        <Icon icon="note" />
+        <Icon icon="note" class="note" />
       </li>
       <li>
-        <Icon icon="key" />
+        <Icon icon="key" class="key" />
       </li>
       <li>
         <Link
@@ -106,7 +106,12 @@ import Icon from "@components/Icon.astro";
 </Layout>
 
 <style>
-  section {
+  h1,
+  p {
+    filter: drop-shadow(0px 0px 6px hsl(0, 0%, 25%));
+  }
+
+  .br {
     padding: var(--content-padding);
     position: absolute;
     bottom: 0;
@@ -118,11 +123,15 @@ import Icon from "@components/Icon.astro";
     align-items: end;
     justify-content: end;
     gap: 1rem;
+
+    max-width: 500px;
   }
 
   .links {
     display: flex;
     flex-direction: row;
     gap: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: end;
   }
 </style>

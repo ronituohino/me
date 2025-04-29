@@ -131,7 +131,7 @@ const ogHref = `${Astro.site}og.png`;
       :root {
         --white: hsl(0, 0%, 92%);
 
-        --content-padding: 1rem;
+        --content-padding: 0.5rem;
         --max-width: 768px;
 
         --transition-speeds: 150ms;
@@ -159,13 +159,16 @@ const ogHref = `${Astro.site}og.png`;
 
       html {
         font-family: "ArkPixel10", Ubuntu, sans-serif;
-        font-size: 32px;
+        font-size: 24px;
         line-height: 1;
       }
 
-      @media screen and (max-width: 768px) {
+      @media screen and (min-width: 768px) {
+        :root {
+          --content-padding: 1rem;
+        }
         html {
-          font-size: 24px;
+          font-size: 32px;
         }
       }
 
