@@ -6,6 +6,13 @@ It contains two applications in the `apps` folder:
 - cv
 - website
 
+## TODO
+
+- <Slideshow /> arrows and cross icons
+- AGE encryption key thing
+- "Projects" icon and button
+- Projects listing style
+
 ## Development
 
 Make sure you have Node (>=v20) and npm installed.

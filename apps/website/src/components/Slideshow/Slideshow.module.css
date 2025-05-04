@@ -1,0 +1,16 @@
+.previous,
+.next {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+}
+
+.previous {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
