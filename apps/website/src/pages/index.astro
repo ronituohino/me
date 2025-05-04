@@ -22,6 +22,7 @@ import Link from "@components/Link.astro";
 import { Dialog } from "@components/Dialog";
 
 import Icon from "@components/Icon.astro";
+import { Image } from "astro:assets";
 ---
 
 <Layout>
@@ -35,7 +36,10 @@ import Icon from "@components/Icon.astro";
 
     <ul class="links">
       <li>
-        <Icon icon="note" class="note" />
+        <Dialog client:only>
+          <Icon slot="button" icon="note" class="note" />
+          <Image src="/book.png" alt="Roni Tuohino" width={601} height={798} />
+        </Dialog>
       </li>
       <li>
         <Icon icon="key" class="key" />
@@ -69,8 +73,6 @@ import Icon from "@components/Icon.astro";
       </li>
     </ul>
   </section>
-
-  <Dialog client:only button="hi">test</Dialog>
 
   <Dialog client:only button="test">
     <ol>

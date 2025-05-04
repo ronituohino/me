@@ -54,8 +54,8 @@ const { icon, class: className } = Astro.props;
 
 <style
   define:vars={{
-    bg: `url("/public/icons.png") -${mappings[icon].initial[0] * 48}px -${mappings[icon].initial[1] * 48}px`,
-    hoverBg: `url("/public/icons.png") -${mappings[icon].hover[0] * 48}px -${mappings[icon].hover[1] * 48}px`,
+    bg: `url("/icons.png") -${mappings[icon].initial[0] * 48}px -${mappings[icon].initial[1] * 48}px`,
+    hoverBg: `url("/icons.png") -${mappings[icon].hover[0] * 48}px -${mappings[icon].hover[1] * 48}px`,
   }}
 >
   span {

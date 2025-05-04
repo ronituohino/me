@@ -1,4 +1,4 @@
-import type { ResolvedChildren } from "solid-js";
+import { createSignal, type ResolvedChildren } from "solid-js";
 
 import styles from "./Dialog.module.css";
 
@@ -6,9 +6,10 @@ export function Dialog({
   button,
   children,
 }: {
-  button: ResolvedChildren;
+  button?: ResolvedChildren;
   children: ResolvedChildren;
 }) {
+  const [open, setOpen] = createSignal(false);
   let dialog: HTMLDialogElement | undefined;
 
   return (
@@ -18,9 +19,10 @@ export function Dialog({
           if (!dialog) {
             return;
           }
-
+          setOpen(true);
           dialog.showModal();
         }}
+        class={styles.button}
       >
         {button}
       </button>
@@ -40,15 +42,26 @@ export function Dialog({
             e.clientX <= rect.left + rect.width;
 
           if (!isInDialog) {
+            setOpen(false);
+          }
+        }}
+        onCancel={(e) => {
+          // Esc key
+          e.preventDefault();
+          setOpen(false);
+        }}
+        onAnimationEnd={(e) => {
+          if (dialog && !open()) {
             dialog.close();
           }
         }}
         class={styles.dialog}
+        data-open={open()}
       >
         <button
           onClick={() => {
             if (dialog) {
-              dialog.close();
+              setOpen(false);
             }
           }}
           class={styles.close}
