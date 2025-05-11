@@ -36,7 +36,7 @@ import { Slideshow } from "@components/Slideshow";
 
     <ul class="links">
       <li>
-        <Dialog client:only>
+        <Dialog fullscreen client:only>
           <Icon slot="button" icon="note" class="note" />
           <Slideshow
             client:only
@@ -58,7 +58,7 @@ import { Slideshow } from "@components/Slideshow";
         </Dialog>
       </li>
       <li>
-        <Dialog client:only>
+        <Dialog fullscreen client:only>
           <Icon slot="button" icon="note" class="note" />
           <div class="project-wrapper">
             <table>
@@ -96,7 +96,24 @@ import { Slideshow } from "@components/Slideshow";
         </Dialog>
       </li>
       <li>
-        <Icon icon="key" class="key" />
+        <Dialog client:only>
+          <Icon slot="button" icon="key" />
+          <p class="age-encryption">
+            If you want to send me secure mail, please use <Link
+              href="https://github.com/FiloSottile/age">age</Link
+            > with the following public key
+
+            <code
+              >age1uguwhdrla2ae2uvvty5zlvg4nnjr86rf50a5rw63fn99dagsj3xs9cgq2n</code
+            >
+
+            <Link
+              href="https://age-online.com/?r=age1uguwhdrla2ae2uvvty5zlvg4nnjr86rf50a5rw63fn99dagsj3xs9cgq2n"
+            >
+              This tool
+            </Link> is handy for quick encryption.
+          </p>
+        </Dialog>
       </li>
       <li>
         <Link
@@ -121,17 +138,18 @@ import { Slideshow } from "@components/Slideshow";
       </li>
 
       <li>
-        <Link href="/ronituohino-resume.pdf" title="Download résumé (CV)"
-          ><Icon icon="cv" /></Link
-        >
+        <Link href="/ronituohino-resume.pdf" title="Download résumé (CV)">
+          <Icon icon="cv" />
+        </Link>
       </li>
     </ul>
   </section>
 </Layout>
 
 <style>
-  h1,
-  p {
+  hgroup > h1,
+  hgroup > p,
+  section > p {
     filter: drop-shadow(0px 0px 6px hsl(0, 0%, 25%));
   }
 
@@ -157,6 +175,19 @@ import { Slideshow } from "@components/Slideshow";
     gap: 0.25rem;
     flex-wrap: wrap;
     justify-content: end;
+  }
+
+  .age-encryption {
+    margin: 1rem;
+    text-align: center;
+  }
+  .age-encryption > code {
+    display: block;
+    background-color: var(--white);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    word-break: break-all;
   }
 
   .project-wrapper {

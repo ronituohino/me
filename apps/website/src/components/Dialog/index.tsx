@@ -5,9 +5,11 @@ import styles from "./Dialog.module.css";
 export function Dialog({
   button,
   children,
+  fullscreen = false,
 }: {
   button?: ResolvedChildren;
   children: ResolvedChildren;
+  fullscreen?: boolean;
 }) {
   const [open, setOpen] = createSignal(false);
   let dialog: HTMLDialogElement | undefined;
@@ -57,6 +59,7 @@ export function Dialog({
         }}
         class={styles.dialog}
         data-open={open()}
+        data-fullscreen={fullscreen}
       >
         <button
           onClick={() => {

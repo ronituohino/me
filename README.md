@@ -9,9 +9,8 @@ It contains two applications in the `apps` folder:
 ## TODO
 
 - <Slideshow /> arrows and cross icons
-- AGE encryption key thing
 - "Projects" icon and button, "open in new tab" icon
-- Projects listing style
+- Dialog pixel styles
 
 ## Development
 
