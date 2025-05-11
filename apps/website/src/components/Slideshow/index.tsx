@@ -35,6 +35,7 @@ export function Slideshow({ images }: Props) {
         alt={images[currentIndex()].alt}
         width={images[currentIndex()].width}
         height={images[currentIndex()].height}
+        class={styles.image}
       />
       <button
         onClick={() => {

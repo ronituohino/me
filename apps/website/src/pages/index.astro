@@ -22,7 +22,6 @@ import Link from "@components/Link.astro";
 import { Dialog } from "@components/Dialog";
 
 import Icon from "@components/Icon.astro";
-import { Image } from "astro:assets";
 import { Slideshow } from "@components/Slideshow";
 ---
 
@@ -61,37 +60,39 @@ import { Slideshow } from "@components/Slideshow";
       <li>
         <Dialog client:only>
           <Icon slot="button" icon="note" class="note" />
-          <table>
-            <thead>
-              <tr>
-                <th>Year</th>
-                <th>Project</th>
-                <th>Made at</th>
-                <th>Built with</th>
-                <th>Links</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                sortedProjects.map((project) => (
-                  <tr>
-                    <td>{project.data.year}</td>
-                    <td>
-                      <Link href={project.data.links[0]}>
-                        {project.data.title}
-                        {project.data.show === "featured" ? (
-                          <span>star!</span>
-                        ) : null}
-                      </Link>
-                    </td>
-                    <td>{project.data.organization}</td>
-                    <td>{project.data.technologies}</td>
-                    <td>{project.data.links}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
+          <div class="project-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th class="year-header">Year</th>
+                  <th class="proj-header">Project</th>
+                  <th class="org-header">Made at</th>
+                  <th class="tech-header">Built with</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  sortedProjects.map((project) => (
+                    <tr>
+                      <td class="year">{project.data.year}</td>
+                      <td class="proj">
+                        <Link href={project.data.links[0]}>
+                          {project.data.title}
+                          {project.data.show === "featured" ? (
+                            <span>star!</span>
+                          ) : null}
+                        </Link>
+                      </td>
+                      <td class="org">{project.data.organization}</td>
+                      <td class="tech">
+                        {project.data.technologies.join(", ")}
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
         </Dialog>
       </li>
       <li>
@@ -158,10 +159,78 @@ import { Slideshow } from "@components/Slideshow";
     justify-content: end;
   }
 
+  .project-wrapper {
+    overflow: hidden;
+    margin: 0.5rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: calc(100% - 1rem);
+    max-width: 1600px;
+  }
   thead {
     text-align: left;
   }
   tbody {
     text-align: left;
+  }
+
+  thead > tr,
+  tbody > tr:not(:last-child) {
+    border-bottom: 3px solid black;
+  }
+
+  th,
+  td {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .year-header,
+  .year {
+    width: 1rem;
+    padding-left: 0;
+  }
+  .proj {
+    word-break: break-word;
+  }
+  .org {
+    display: none;
+  }
+  .org-header {
+    display: none;
+  }
+  .tech-header {
+    display: none;
+  }
+  .tech {
+    display: none;
+  }
+  @media screen and (min-width: 470px) {
+    .proj {
+      word-break: normal;
+    }
+    .org-header {
+      display: table-cell;
+    }
+    .org {
+      display: table-cell;
+    }
+  }
+  @media screen and (min-width: 900px) {
+    .tech-header {
+      display: table-cell;
+    }
+    .tech {
+      display: table-cell;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .year-header,
+    .year {
+      width: 2rem;
+    }
   }
 </style>

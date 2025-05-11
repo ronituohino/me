@@ -10,7 +10,7 @@ It contains two applications in the `apps` folder:
 
 - <Slideshow /> arrows and cross icons
 - AGE encryption key thing
-- "Projects" icon and button
+- "Projects" icon and button, "open in new tab" icon
 - Projects listing style
 
 ## Development
