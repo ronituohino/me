@@ -6,10 +6,12 @@ export function Dialog({
   button,
   children,
   fullscreen = false,
+  close,
 }: {
   button?: ResolvedChildren;
   children: ResolvedChildren;
   fullscreen?: boolean;
+  close?: ResolvedChildren;
 }) {
   const [open, setOpen] = createSignal(false);
   let dialog: HTMLDialogElement | undefined;
@@ -69,7 +71,7 @@ export function Dialog({
           }}
           class={styles.close}
         >
-          close
+          {close ?? "Close"}
         </button>
         {children}
       </dialog>

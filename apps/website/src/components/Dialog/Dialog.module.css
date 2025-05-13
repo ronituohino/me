@@ -8,6 +8,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 0.5rem;
+  background-color: #ffbc70;
 }
 
 .dialog[data-fullscreen="true"] {
@@ -58,4 +59,5 @@
   position: absolute;
   top: 0;
   right: 0;
+  background: transparent;
 }

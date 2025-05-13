@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createSignal, type ResolvedChildren } from "solid-js";
 
 import styles from "./Slideshow.module.css";
 
@@ -11,9 +11,11 @@ type Image = {
 
 type Props = {
   images: Image[];
+  leftButton?: ResolvedChildren;
+  rightButton?: ResolvedChildren;
 };
 
-export function Slideshow({ images }: Props) {
+export function Slideshow({ images, leftButton, rightButton }: Props) {
   const [currentIndex, setCurrentIndex] = createSignal(0);
 
   return (
@@ -28,7 +30,7 @@ export function Slideshow({ images }: Props) {
         class={styles.previous}
         data-disabled={currentIndex() === 0}
       >
-        prev
+        {leftButton ?? "Previous"}
       </button>
       <img
         src={images[currentIndex()].src}
@@ -47,7 +49,7 @@ export function Slideshow({ images }: Props) {
         class={styles.next}
         data-disabled={currentIndex() === images.length - 1}
       >
-        next
+        {rightButton ?? "Next"}
       </button>
     </>
   );

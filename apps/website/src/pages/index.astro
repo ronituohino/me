@@ -37,7 +37,8 @@ import { Slideshow } from "@components/Slideshow";
     <ul class="links">
       <li>
         <Dialog fullscreen client:only>
-          <Icon slot="button" icon="note" class="note" />
+          <Icon slot="close" icon="cross" />
+          <Icon slot="button" icon="note" />
           <Slideshow
             client:only
             images={[
@@ -54,12 +55,37 @@ import { Slideshow } from "@components/Slideshow";
                 height: 798,
               },
             ]}
-          />
+          >
+            <Icon slot="leftButton" icon="l_arrow" />
+            <Icon slot="rightButton" icon="r_arrow" />
+          </Slideshow>
+        </Dialog>
+      </li>
+      <li>
+        <Dialog client:only>
+          <Icon slot="close" icon="cross" />
+          <Icon slot="button" icon="key" />
+          <p class="age-encryption">
+            If you want to send me secure mail, please use <Link
+              href="https://github.com/FiloSottile/age">age</Link
+            > with the following public key
+
+            <code
+              >age1uguwhdrla2ae2uvvty5zlvg4nnjr86rf50a5rw63fn99dagsj3xs9cgq2n</code
+            >
+
+            <Link
+              href="https://age-online.com/?r=age1uguwhdrla2ae2uvvty5zlvg4nnjr86rf50a5rw63fn99dagsj3xs9cgq2n"
+            >
+              This tool
+            </Link> is handy for quick encryption.
+          </p>
         </Dialog>
       </li>
       <li>
         <Dialog fullscreen client:only>
-          <Icon slot="button" icon="note" class="note" />
+          <Icon slot="close" icon="cross" />
+          <Icon slot="button" icon="measure" />
           <div class="project-wrapper">
             <table>
               <thead>
@@ -95,26 +121,7 @@ import { Slideshow } from "@components/Slideshow";
           </div>
         </Dialog>
       </li>
-      <li>
-        <Dialog client:only>
-          <Icon slot="button" icon="key" />
-          <p class="age-encryption">
-            If you want to send me secure mail, please use <Link
-              href="https://github.com/FiloSottile/age">age</Link
-            > with the following public key
 
-            <code
-              >age1uguwhdrla2ae2uvvty5zlvg4nnjr86rf50a5rw63fn99dagsj3xs9cgq2n</code
-            >
-
-            <Link
-              href="https://age-online.com/?r=age1uguwhdrla2ae2uvvty5zlvg4nnjr86rf50a5rw63fn99dagsj3xs9cgq2n"
-            >
-              This tool
-            </Link> is handy for quick encryption.
-          </p>
-        </Dialog>
-      </li>
       <li>
         <Link
           ariaLabel="See my GitHub profile"
