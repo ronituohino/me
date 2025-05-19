@@ -3,26 +3,15 @@
 }
 
 .dialog {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 0.5rem;
-  background-color: #ffbc70;
-}
-
-.dialog[data-fullscreen="true"] {
-  width: 100vw;
-  height: 100vh;
-}
-
-.dialog::backdrop {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: scroll;
 }
 
 .dialog[data-open="true"] {
@@ -60,4 +49,18 @@
   top: 0;
   right: 0;
   background: transparent;
+}
+
+.content {
+  overflow: scroll;
+  margin: 1rem;
+
+  background-color: #ffbc70;
+  border: 30px solid;
+  border-radius: 30px;
+  border-image: url("border.png") 30;
+  border-image-repeat: round;
+
+  scrollbar-color: #e67a00 #ffbc70;
+  scrollbar-width: thin;
 }

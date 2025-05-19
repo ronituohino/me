@@ -21,13 +21,15 @@ export function Dialog({ button, children, fullscreen = false }: Props) {
             return;
           }
           setOpen(true);
-          dialog.showModal();
+          dialog.show();
         }}
         class={styles.button}
       >
         {button}
       </button>
       <dialog
+        // @ts-ignore
+        closedby="any"
         ref={dialog}
         onClick={(e) => {
           // Close dialog when clicking outside of it
@@ -70,7 +72,7 @@ export function Dialog({ button, children, fullscreen = false }: Props) {
         >
           <Icon icon="cross" />
         </button>
-        {children}
+        <div class={styles.content}>{children}</div>
       </dialog>
     </>
   );
