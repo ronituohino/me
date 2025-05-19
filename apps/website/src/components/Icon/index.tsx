@@ -1,5 +1,4 @@
----
-const mappings = {
+const MAP = {
   linkedin: {
     initial: [0, 0],
     hover: [0, 1],
@@ -72,35 +71,25 @@ const mappings = {
     initial: [0, 4],
     hover: [1, 4],
   },
-};
+} as const;
 
 type Props = {
-  icon: keyof typeof mappings;
-  class?: string;
+  icon: keyof typeof MAP;
+  className?: string;
 };
 
-const { icon, class: className } = Astro.props;
----
+import styles from "./Icon.module.css";
 
-<span class={className}></span>
-
-<style
-  define:vars={{
-    bg: `url("/icons.png") -${mappings[icon].initial[0] * 48}px -${mappings[icon].initial[1] * 48}px`,
-    hoverBg: `url("/icons.png") -${mappings[icon].hover[0] * 48}px -${mappings[icon].hover[1] * 48}px`,
-  }}
->
-  span {
-    display: block;
-    width: 48px;
-    height: 48px;
-    background: var(--bg);
-    color: var(--color);
-  }
-
-  span:hover {
-    background: var(--hoverBg);
-  }
-
-  span: has();
-</style>
+export function Icon({ icon, className }: Props) {
+  return (
+    <span
+      class={styles.icon + " " + className}
+      style={`--bg: url("/icons.png") -${MAP[icon].initial[0] * 48}px -${
+        MAP[icon].initial[1] * 48
+      }px;
+      --bg-hover: url("/icons.png") -${MAP[icon].hover[0] * 48}px -${
+        MAP[icon].hover[1] * 48
+      }px;`}
+    ></span>
+  );
+}

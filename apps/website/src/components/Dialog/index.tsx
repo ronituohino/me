@@ -1,18 +1,15 @@
 import { createSignal, type ResolvedChildren } from "solid-js";
 
 import styles from "./Dialog.module.css";
+import { Icon } from "@components/Icon";
 
-export function Dialog({
-  button,
-  children,
-  fullscreen = false,
-  close,
-}: {
+type Props = {
   button?: ResolvedChildren;
   children: ResolvedChildren;
   fullscreen?: boolean;
-  close?: ResolvedChildren;
-}) {
+};
+
+export function Dialog({ button, children, fullscreen = false }: Props) {
   const [open, setOpen] = createSignal(false);
   let dialog: HTMLDialogElement | undefined;
 
@@ -71,7 +68,7 @@ export function Dialog({
           }}
           class={styles.close}
         >
-          {close ?? "Close"}
+          <Icon icon="cross" />
         </button>
         {children}
       </dialog>
