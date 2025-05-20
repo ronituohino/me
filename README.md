@@ -8,9 +8,8 @@ It contains two applications in the `apps` folder:
 
 ## TODO
 
-- <Slideshow /> arrows and cross icons
-- "Projects" icon and button, "open in new tab" icon
-- Dialog pixel styles
+- Fix Dialog pixel styles
+- Copy age public key icon + button and style
 
 ## Development
 

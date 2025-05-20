@@ -36,7 +36,7 @@ import { Slideshow } from "@components/Slideshow";
 
     <ul class="links">
       <li>
-        <Dialog fullscreen client:only>
+        <Dialog frame={false} client:only contain>
           <Icon slot="button" icon="note" />
           <Slideshow
             client:only
@@ -78,7 +78,7 @@ import { Slideshow } from "@components/Slideshow";
         </Dialog>
       </li>
       <li>
-        <Dialog fullscreen client:only>
+        <Dialog client:only>
           <Icon slot="button" icon="measure" />
           <div class="project-wrapper">
             <table>

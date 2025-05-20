@@ -6,12 +6,19 @@ import { Icon } from "@components/Icon";
 type Props = {
   button?: ResolvedChildren;
   children: ResolvedChildren;
-  fullscreen?: boolean;
+  frame?: boolean;
+  contain?: boolean;
 };
 
-export function Dialog({ button, children, fullscreen = false }: Props) {
+export function Dialog({
+  button,
+  children,
+  frame = true,
+  contain = false,
+}: Props) {
   const [open, setOpen] = createSignal(false);
   let dialog: HTMLDialogElement | undefined;
+  let content: HTMLDivElement | undefined;
 
   return (
     <>
@@ -33,11 +40,11 @@ export function Dialog({ button, children, fullscreen = false }: Props) {
         ref={dialog}
         onClick={(e) => {
           // Close dialog when clicking outside of it
-          if (!dialog) {
+          if (!content) {
             return;
           }
 
-          const rect = dialog.getBoundingClientRect();
+          const rect = content.getBoundingClientRect();
           const isInDialog =
             rect.top <= e.clientY &&
             e.clientY <= rect.top + rect.height &&
@@ -60,7 +67,6 @@ export function Dialog({ button, children, fullscreen = false }: Props) {
         }}
         class={styles.dialog}
         data-open={open()}
-        data-fullscreen={fullscreen}
       >
         <button
           onClick={() => {
@@ -72,7 +78,16 @@ export function Dialog({ button, children, fullscreen = false }: Props) {
         >
           <Icon icon="cross" />
         </button>
-        <div class={styles.content}>{children}</div>
+        <div class={styles.center}>
+          <div
+            class={styles.content}
+            ref={content}
+            data-frame={frame}
+            data-contain={contain}
+          >
+            {children}
+          </div>
+        </div>
       </dialog>
     </>
   );
