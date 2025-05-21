@@ -1,4 +1,4 @@
-import { createSignal, type ResolvedChildren } from "solid-js";
+import { createEffect, createSignal, type ResolvedChildren } from "solid-js";
 
 import styles from "./Dialog.module.css";
 import { Icon } from "@components/Icon";
@@ -20,6 +20,34 @@ export function Dialog({
   let dialog: HTMLDialogElement | undefined;
   let content: HTMLDivElement | undefined;
 
+  const resize = () => {
+    if (!dialog || !content) {
+      return;
+    }
+    if (!open()) {
+      return;
+    }
+
+    const rect = content.getBoundingClientRect();
+    console.log(rect);
+    if (rect.height > window.innerHeight) {
+      dialog.style.setProperty("--top", `0px`);
+    } else {
+      const diff =
+        window.innerHeight -
+        rect.height -
+        2 * parseFloat(getComputedStyle(document.documentElement).fontSize); // 2rem
+      dialog.style.setProperty("--top", `${diff / 2}px`);
+    }
+  };
+
+  createEffect(() => {
+    addEventListener("resize", resize);
+    return () => {
+      removeEventListener("resize", resize);
+    };
+  });
+
   return (
     <>
       <button
@@ -28,6 +56,7 @@ export function Dialog({
             return;
           }
           setOpen(true);
+          resize();
           dialog.show();
         }}
         class={styles.button}
@@ -67,6 +96,7 @@ export function Dialog({
         }}
         class={styles.dialog}
         data-open={open()}
+        style={`--top: ${window.scrollY}px;`}
       >
         <button
           onClick={() => {
@@ -78,15 +108,13 @@ export function Dialog({
         >
           <Icon icon="cross" />
         </button>
-        <div class={styles.center}>
-          <div
-            class={styles.content}
-            ref={content}
-            data-frame={frame}
-            data-contain={contain}
-          >
-            {children}
-          </div>
+        <div
+          class={styles.content}
+          ref={content}
+          data-frame={frame}
+          data-contain={contain}
+        >
+          {children}
         </div>
       </dialog>
     </>

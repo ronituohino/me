@@ -7,6 +7,9 @@ import solidJs from "@astrojs/solid-js";
 export default defineConfig({
   site: "https://ronituohino.com",
   integrations: [solidJs(), sitemap()],
+  devToolbar: {
+    enabled: false
+  },
 
   vite: {
     optimizeDeps: {
