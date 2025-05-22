@@ -29,15 +29,14 @@ export function Dialog({
     }
 
     const rect = content.getBoundingClientRect();
-    console.log(rect);
-    if (rect.height > window.innerHeight) {
-      dialog.style.setProperty("--top", `0px`);
-    } else {
-      const diff =
-        window.innerHeight -
-        rect.height -
-        2 * parseFloat(getComputedStyle(document.documentElement).fontSize); // 2rem
+    const diff =
+      window.innerHeight -
+      rect.height -
+      2 * parseFloat(getComputedStyle(document.documentElement).fontSize); // 2rem
+    if (diff > 0) {
       dialog.style.setProperty("--top", `${diff / 2}px`);
+    } else {
+      dialog.style.setProperty("--top", `0px`);
     }
   };
 
@@ -56,8 +55,8 @@ export function Dialog({
             return;
           }
           setOpen(true);
-          resize();
           dialog.show();
+          resize();
         }}
         class={styles.button}
       >
@@ -96,7 +95,6 @@ export function Dialog({
         }}
         class={styles.dialog}
         data-open={open()}
-        style={`--top: ${window.scrollY}px;`}
       >
         <button
           onClick={() => {

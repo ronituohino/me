@@ -12,7 +12,7 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   overflow: scroll;
-  margin-top: var(--top);
+  padding-top: var(--top);
 }
 
 .dialog[data-open="true"] {
@@ -47,7 +47,7 @@
 
 .close {
   position: absolute;
-  top: 1rem;
+  top: calc(1rem + var(--top));
   right: 1rem;
   background: transparent;
 }
