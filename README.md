@@ -10,6 +10,7 @@ It contains two applications in the `apps` folder:
 
 - Fix Dialog pixel styles
 - Copy age public key icon + button and style
+- Add tab styles to buttons
 
 ## Development
 

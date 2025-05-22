@@ -29,14 +29,32 @@ export function Dialog({
     }
 
     const rect = content.getBoundingClientRect();
-    const diff =
-      window.innerHeight -
-      rect.height -
+
+    const twoRem =
       2 * parseFloat(getComputedStyle(document.documentElement).fontSize); // 2rem
-    if (diff > 0) {
-      dialog.style.setProperty("--top", `${diff / 2}px`);
+
+    const diffX = window.innerWidth - rect.width - twoRem;
+    const diffY = window.innerHeight - rect.height - twoRem;
+
+    let overflow = false;
+
+    if (diffY > 0) {
+      dialog.style.setProperty("--top", `${diffY / 2}px`);
     } else {
+      overflow = true;
       dialog.style.setProperty("--top", `0px`);
+    }
+    if (diffX > 0) {
+      dialog.style.setProperty("--right", `${diffX / 2}px`);
+    } else {
+      overflow = true;
+      dialog.style.setProperty("--right", `${diffX}px`);
+    }
+
+    if (overflow) {
+      dialog.style.setProperty("overflow", "scroll");
+    } else {
+      dialog.style.setProperty("overflow", "hidden");
     }
   };
 

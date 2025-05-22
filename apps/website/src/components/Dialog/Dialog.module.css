@@ -13,6 +13,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   overflow: scroll;
   padding-top: var(--top);
+  padding-right: var(--right);
 }
 
 .dialog[data-open="true"] {
@@ -48,11 +49,12 @@
 .close {
   position: absolute;
   top: calc(1rem + var(--top));
-  right: 1rem;
+  right: calc(1rem + var(--right));
   background: transparent;
 }
 
 .content {
+  display: inline-block;
   margin: 1rem;
 }
 
