@@ -10,12 +10,7 @@ type Props = {
   contain?: boolean;
 };
 
-export function Dialog({
-  button,
-  children,
-  frame = true,
-  contain = false,
-}: Props) {
+export function Dialog(props: Props) {
   const [open, setOpen] = createSignal(false);
   let dialog: HTMLDialogElement | undefined;
   let content: HTMLDivElement | undefined;
@@ -78,7 +73,7 @@ export function Dialog({
         }}
         class={styles.button}
       >
-        {button}
+        {props.button}
       </button>
       <dialog
         // @ts-ignore
@@ -122,15 +117,15 @@ export function Dialog({
           }}
           class={styles.close}
         >
-          <Icon icon="cross" />
+          <Icon icon="close" />
         </button>
         <div
           class={styles.content}
           ref={content}
-          data-frame={frame}
-          data-contain={contain}
+          data-frame={props.frame ?? true}
+          data-contain={props.contain ?? false}
         >
-          {children}
+          {props.children}
         </div>
       </dialog>
     </>

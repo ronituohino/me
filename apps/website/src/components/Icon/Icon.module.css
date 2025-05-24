@@ -6,6 +6,11 @@
   height: 48px;
 }
 
-.icon:hover {
+.icon[data-small="true"] {
+  width: 36px;
+  height: 36px;
+}
+
+.icon[data-disabled="false"]:hover {
   background: var(--bg-hover);
 }

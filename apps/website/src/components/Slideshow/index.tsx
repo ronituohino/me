@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import { Icon } from "@components/Icon";
 
 import styles from "./Slideshow.module.css";
@@ -14,8 +14,23 @@ type Props = {
   images: Image[];
 };
 
-export function Slideshow({ images }: Props) {
+export function Slideshow(props: Props) {
   const [currentIndex, setCurrentIndex] = createSignal(0);
+  const [leftArrowDisabled, setLeftArrowDisabled] = createSignal(false);
+  const [rightArrowDisabled, setRightArrowDisabled] = createSignal(false);
+
+  createEffect(() => {
+    if (currentIndex() === 0) {
+      setLeftArrowDisabled(true);
+    } else {
+      setLeftArrowDisabled(false);
+    }
+    if (currentIndex() === props.images.length - 1) {
+      setRightArrowDisabled(true);
+    } else {
+      setRightArrowDisabled(false);
+    }
+  });
 
   return (
     <>
@@ -27,28 +42,36 @@ export function Slideshow({ images }: Props) {
           }
         }}
         class={styles.previous}
-        data-disabled={currentIndex() === 0}
+        data-disabled={leftArrowDisabled()}
       >
-        <Icon icon="l_arrow" className={styles.arrow} />
+        <Icon
+          icon="l_arrow"
+          disabled={leftArrowDisabled()}
+          className={styles.arrow}
+        />
       </button>
       <img
-        src={images[currentIndex()].src}
-        alt={images[currentIndex()].alt}
-        width={images[currentIndex()].width}
-        height={images[currentIndex()].height}
+        src={props.images[currentIndex()].src}
+        alt={props.images[currentIndex()].alt}
+        width={props.images[currentIndex()].width}
+        height={props.images[currentIndex()].height}
         class={styles.image}
       />
       <button
         onClick={() => {
           const nextIndex = currentIndex() + 1;
-          if (nextIndex < images.length) {
+          if (nextIndex < props.images.length) {
             setCurrentIndex(nextIndex);
           }
         }}
         class={styles.next}
-        data-disabled={currentIndex() === images.length - 1}
+        data-disabled={rightArrowDisabled()}
       >
-        <Icon icon="r_arrow" className={styles.arrow} />
+        <Icon
+          icon="r_arrow"
+          disabled={rightArrowDisabled()}
+          className={styles.arrow}
+        />
       </button>
     </>
   );

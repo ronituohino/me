@@ -59,7 +59,7 @@
 }
 
 .content[data-frame="true"] {
-  background-color: #ffbc70;
+  background: url("bg.png");
   border: 30px solid;
   border-radius: 30px;
   border-image: url("border.png") 30;

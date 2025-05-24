@@ -23,6 +23,10 @@ import { Dialog } from "@components/Dialog";
 
 import { Icon } from "@components/Icon";
 import { Slideshow } from "@components/Slideshow";
+import { AgeCode } from "@components/AgeCode";
+
+const AGE_PUBLIC_KEY =
+  "age1uguwhdrla2ae2uvvty5zlvg4nnjr86rf50a5rw63fn99dagsj3xs9cgq2n";
 ---
 
 <Layout>
@@ -65,13 +69,9 @@ import { Slideshow } from "@components/Slideshow";
               href="https://github.com/FiloSottile/age">age</Link
             > with the following public key
 
-            <code
-              >age1uguwhdrla2ae2uvvty5zlvg4nnjr86rf50a5rw63fn99dagsj3xs9cgq2n</code
-            >
+            <AgeCode client:only code={AGE_PUBLIC_KEY} />
 
-            <Link
-              href="https://age-online.com/?r=age1uguwhdrla2ae2uvvty5zlvg4nnjr86rf50a5rw63fn99dagsj3xs9cgq2n"
-            >
+            <Link href={`https://age-online.com/?r=${AGE_PUBLIC_KEY}`}>
               This tool
             </Link> is handy for quick encryption.
           </p>
@@ -79,7 +79,7 @@ import { Slideshow } from "@components/Slideshow";
       </li>
       <li>
         <Dialog client:only>
-          <Icon slot="button" icon="measure" />
+          <Icon slot="button" icon="ruler" />
           <div class="project-wrapper">
             <table>
               <thead>
@@ -98,10 +98,10 @@ import { Slideshow } from "@components/Slideshow";
                       <td class="proj">
                         <Link href={project.data.links[0]}>
                           {project.data.title}
-                          {project.data.show === "featured" ? (
-                            <span>star!</span>
-                          ) : null}
                         </Link>
+                        {project.data.show === "featured" ? (
+                          <span class="proj-star">★</span>
+                        ) : null}
                       </td>
                       <td class="org">{project.data.organization}</td>
                       <td class="tech">
@@ -179,16 +179,8 @@ import { Slideshow } from "@components/Slideshow";
   }
 
   .age-encryption {
-    margin: 1rem;
-    text-align: center;
-  }
-  .age-encryption > code {
-    display: block;
-    background-color: var(--white);
-    padding: 0.5rem;
-    border-radius: 0.5rem;
     margin: 0.5rem;
-    word-break: break-all;
+    text-align: center;
   }
 
   .project-wrapper {
@@ -211,7 +203,7 @@ import { Slideshow } from "@components/Slideshow";
 
   thead > tr,
   tbody > tr:not(:last-child) {
-    border-bottom: 3px solid rgb(255, 159, 80);
+    border-bottom: 3px solid rgb(255, 187, 109);
   }
 
   th,
@@ -226,6 +218,9 @@ import { Slideshow } from "@components/Slideshow";
   }
   .proj {
     word-break: break-word;
+  }
+  .proj-star {
+    color: rgb(255, 137, 3);
   }
   .org {
     display: none;
