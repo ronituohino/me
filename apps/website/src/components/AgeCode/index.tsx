@@ -7,17 +7,18 @@ type Props = {
 };
 
 export function AgeCode(props: Props) {
+  let codeRef: HTMLTextAreaElement | undefined;
+
   return (
-    <div class={styles.root}>
-      <code class={styles.code}>{props.code}</code>
-      <button
-        class={styles.copy}
-        onClick={() => {
-          navigator.clipboard.writeText(props.code);
-        }}
-      >
-        <Icon icon="clipboard" small />
-      </button>
+    <div
+      class={styles.container}
+      onClick={() => {
+        codeRef?.select();
+      }}
+    >
+      <textarea ref={codeRef} class={styles.code} rows={1}>
+        {props.code}
+      </textarea>
     </div>
   );
 }
