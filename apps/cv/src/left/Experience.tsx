@@ -18,7 +18,8 @@ export function Experience() {
               school and during multiple summers.
             </li>
             <li>Collaborated with senior developers to rewrite both sites.</li>
-            <li>Created a client-side analytics integration independently.</li>
+            <li>Implemented profiles for the web client.</li>
+            <li>Fixed numerous issues related to accessibility.</li>
           </ul>
         </Detail>
         <Detail
