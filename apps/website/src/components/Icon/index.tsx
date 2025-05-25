@@ -49,11 +49,11 @@ const MAP = {
   },
 } as const;
 
-type Props = {
+export type IconProps = {
   icon: keyof typeof MAP;
   small?: boolean;
   disabled?: boolean;
-  className?: string;
+  class?: string;
 };
 
 const ICON_SIZE = 48; // Size of each icon in the sprite sheet
@@ -61,10 +61,10 @@ const SMALL_OFFSET = 6;
 
 import styles from "./Icon.module.css";
 
-export function Icon(props: Props) {
+export function Icon(props: IconProps) {
   return (
     <span
-      class={styles.icon + " " + props.className}
+      class={styles.icon + " " + props.class}
       style={`--bg: url("/icons.png") -${
         MAP[props.icon].initial[0] * ICON_SIZE +
         (props.small ? SMALL_OFFSET : 0)

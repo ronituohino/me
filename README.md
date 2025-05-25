@@ -8,7 +8,8 @@ It contains two applications in the `apps` folder:
 
 ## TODO
 
-- Add tab styles to buttons
+- Finish remaining tab styles to buttons
+- Use Slideshow with arrow keys
 
 ## Development
 

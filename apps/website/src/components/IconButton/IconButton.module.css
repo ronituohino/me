@@ -1,0 +1,8 @@
+.button {
+  outline: none;
+}
+
+.button:hover > .icon,
+.button:focus-visible > .icon {
+  background: var(--bg-hover);
+}

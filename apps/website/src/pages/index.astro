@@ -18,10 +18,12 @@ const sortedProjects = shownProjects.toSorted((a, b) => {
 });
 
 import Layout from "@layouts/Layout.astro";
-import Link from "@components/Link.astro";
+import { Link } from "@components/Link";
 import { Dialog } from "@components/Dialog";
 
 import { Icon } from "@components/Icon";
+import { IconLink } from "@components/IconLink";
+import { IconButton } from "@components/IconButton";
 import { Slideshow } from "@components/Slideshow";
 import { AgeCode } from "@components/AgeCode";
 
@@ -117,31 +119,49 @@ const AGE_PUBLIC_KEY =
       </li>
 
       <li>
-        <Link
-          ariaLabel="See my GitHub profile"
-          href="https://github.com/ronituohino"
-        >
-          <Icon icon="github" />
-        </Link>
+        <IconLink
+          link={{
+            ariaLabel: "See my GitHub profile",
+            href: "https://github.com/ronituohino",
+          }}
+          icon={{
+            icon: "github",
+          }}
+        />
       </li>
       <li>
-        <Link
-          ariaLabel="See my Linkedin profile"
-          href="https://www.linkedin.com/in/ronituohino/"
-        >
-          <Icon icon="linkedin" />
-        </Link>
+        <IconLink
+          link={{
+            ariaLabel: "See my Linkedin profile",
+            href: "https://www.linkedin.com/in/ronituohino/",
+          }}
+          icon={{
+            icon: "linkedin",
+          }}
+        />
       </li>
       <li>
-        <Link ariaLabel="Send me an email" href="mailto:rt@ronituohino.com">
-          <Icon icon="email" />
-        </Link>
+        <IconLink
+          link={{
+            ariaLabel: "Send me an email",
+            href: "mailto:rt@ronituohino.com",
+          }}
+          icon={{
+            icon: "email",
+          }}
+        />
       </li>
 
       <li>
-        <Link href="/ronituohino-resume.pdf" title="Download résumé (CV)">
-          <Icon icon="cv" />
-        </Link>
+        <IconLink
+          link={{
+            ariaLabel: "Download résumé (CV)",
+            href: "/ronituohino-resume.pdf",
+          }}
+          icon={{
+            icon: "cv",
+          }}
+        />
       </li>
     </ul>
   </section>

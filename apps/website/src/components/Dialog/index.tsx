@@ -2,6 +2,7 @@ import { createEffect, createSignal, type ResolvedChildren } from "solid-js";
 
 import styles from "./Dialog.module.css";
 import { Icon } from "@components/Icon";
+import { IconButton } from "@components/IconButton";
 
 type Props = {
   button?: ResolvedChildren;
@@ -60,6 +61,11 @@ export function Dialog(props: Props) {
     };
   });
 
+  const cancelDialog = (e: Event) => {
+    e.preventDefault();
+    setOpen(false);
+  };
+
   return (
     <>
       <button
@@ -96,11 +102,6 @@ export function Dialog(props: Props) {
             setOpen(false);
           }
         }}
-        onCancel={(e) => {
-          // Esc key
-          e.preventDefault();
-          setOpen(false);
-        }}
         onAnimationEnd={(e) => {
           if (dialog && !open()) {
             dialog.close();
@@ -108,17 +109,27 @@ export function Dialog(props: Props) {
         }}
         class={styles.dialog}
         data-open={open()}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            cancelDialog(e);
+          }
+        }}
+        onCancel={(e) => {
+          cancelDialog(e);
+        }}
       >
-        <button
-          onClick={() => {
-            if (dialog) {
-              setOpen(false);
-            }
+        <IconButton
+          button={{
+            onClick: () => {
+              if (dialog) {
+                setOpen(false);
+              }
+            },
+            class: styles.close,
           }}
-          class={styles.close}
-        >
-          <Icon icon="close" />
-        </button>
+          icon={{ icon: "close" }}
+        />
+
         <div
           class={styles.content}
           ref={content}

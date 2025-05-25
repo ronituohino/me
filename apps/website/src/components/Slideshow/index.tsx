@@ -47,7 +47,7 @@ export function Slideshow(props: Props) {
         <Icon
           icon="l_arrow"
           disabled={leftArrowDisabled()}
-          className={styles.arrow}
+          class={styles.arrow}
         />
       </button>
       <img
@@ -70,7 +70,7 @@ export function Slideshow(props: Props) {
         <Icon
           icon="r_arrow"
           disabled={rightArrowDisabled()}
-          className={styles.arrow}
+          class={styles.arrow}
         />
       </button>
     </>
