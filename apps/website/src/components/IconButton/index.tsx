@@ -8,8 +8,8 @@ type IconButtonProps = {
   button: {
     onClick: () => void;
     class?: string;
-    props?: Record<string, any>;
   };
+  disabled?: boolean;
 };
 
 export function IconButton(props: IconButtonProps) {
@@ -17,8 +17,9 @@ export function IconButton(props: IconButtonProps) {
     <button
       onClick={() => props.button.onClick()}
       class={styles.button + " " + props.button.class}
+      data-disabled={props.disabled ?? "false"}
     >
-      <Icon {...props.icon} class={styles.icon} />
+      <Icon {...props.icon} class={styles.icon} disabled={props.disabled} />
     </button>
   );
 }

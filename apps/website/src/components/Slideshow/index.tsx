@@ -2,6 +2,8 @@ import { createEffect, createSignal } from "solid-js";
 import { Icon } from "@components/Icon";
 
 import styles from "./Slideshow.module.css";
+import { IconButton } from "@components/IconButton";
+import { Dialog } from "@components/Dialog";
 
 type Image = {
   src: string;
@@ -15,6 +17,8 @@ type Props = {
 };
 
 export function Slideshow(props: Props) {
+  const [open, setOpen] = createSignal(false);
+
   const [currentIndex, setCurrentIndex] = createSignal(0);
   const [leftArrowDisabled, setLeftArrowDisabled] = createSignal(false);
   const [rightArrowDisabled, setRightArrowDisabled] = createSignal(false);
@@ -34,45 +38,53 @@ export function Slideshow(props: Props) {
 
   return (
     <>
-      <button
-        onClick={() => {
-          const previousIndex = currentIndex() - 1;
-          if (previousIndex >= 0) {
-            setCurrentIndex(previousIndex);
-          }
+      <IconButton
+        icon={{ icon: "ruler" }}
+        button={{
+          onClick: () => {
+            setOpen(true);
+          },
         }}
-        class={styles.previous}
-        data-disabled={leftArrowDisabled()}
-      >
-        <Icon
-          icon="l_arrow"
-          disabled={leftArrowDisabled()}
-          class={styles.arrow}
-        />
-      </button>
-      <img
-        src={props.images[currentIndex()].src}
-        alt={props.images[currentIndex()].alt}
-        width={props.images[currentIndex()].width}
-        height={props.images[currentIndex()].height}
-        class={styles.image}
       />
-      <button
-        onClick={() => {
-          const nextIndex = currentIndex() + 1;
-          if (nextIndex < props.images.length) {
-            setCurrentIndex(nextIndex);
-          }
-        }}
-        class={styles.next}
-        data-disabled={rightArrowDisabled()}
-      >
-        <Icon
-          icon="r_arrow"
-          disabled={rightArrowDisabled()}
-          class={styles.arrow}
-        />
-      </button>
+      <Dialog open={open()} setOpen={setOpen} frame={false} contain>
+        <>
+          <IconButton
+            icon={{ icon: "l_arrow" }}
+            button={{
+              onClick: () => {
+                const previousIndex = currentIndex() - 1;
+                if (previousIndex >= 0) {
+                  setCurrentIndex(previousIndex);
+                }
+              },
+              class: styles.previous,
+            }}
+            disabled={leftArrowDisabled()}
+          />
+
+          <img
+            src={props.images[currentIndex()].src}
+            alt={props.images[currentIndex()].alt}
+            width={props.images[currentIndex()].width}
+            height={props.images[currentIndex()].height}
+            class={styles.image}
+          />
+
+          <IconButton
+            icon={{ icon: "r_arrow" }}
+            button={{
+              onClick: () => {
+                const nextIndex = currentIndex() + 1;
+                if (nextIndex < props.images.length) {
+                  setCurrentIndex(nextIndex);
+                }
+              },
+              class: styles.next,
+            }}
+            disabled={rightArrowDisabled()}
+          />
+        </>
+      </Dialog>
     </>
   );
 }

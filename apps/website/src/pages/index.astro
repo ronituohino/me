@@ -23,12 +23,8 @@ import { Dialog } from "@components/Dialog";
 
 import { Icon } from "@components/Icon";
 import { IconLink } from "@components/IconLink";
-import { IconButton } from "@components/IconButton";
 import { Slideshow } from "@components/Slideshow";
 import { AgeCode } from "@components/AgeCode";
-
-const AGE_PUBLIC_KEY =
-  "age1uguwhdrla2ae2uvvty5zlvg4nnjr86rf50a5rw63fn99dagsj3xs9cgq2n";
 ---
 
 <Layout>
@@ -42,44 +38,30 @@ const AGE_PUBLIC_KEY =
 
     <ul class="links">
       <li>
-        <Dialog frame={false} client:only contain>
-          <Icon slot="button" icon="note" />
-          <Slideshow
-            client:only
-            images={[
-              {
-                src: "/book.png",
-                alt: "Top book Ørnfjord with rock climbers in the background.",
-                width: 601,
-                height: 798,
-              },
-              {
-                src: "/writing.png",
-                alt: "Open book with the text 'Hiton siisti mesta!' from Satu, Roni, Antton, and Perttu.",
-                width: 605,
-                height: 798,
-              },
-            ]}
-          />
-        </Dialog>
+        <Slideshow
+          client:only
+          images={[
+            {
+              src: "/book.png",
+              alt: "Top book Ørnfjord with rock climbers in the background.",
+              width: 601,
+              height: 798,
+            },
+            {
+              src: "/writing.png",
+              alt: "Open book with the text 'Hiton siisti mesta!' from Satu, Roni, Antton, and Perttu.",
+              width: 605,
+              height: 798,
+            },
+          ]}
+        />
       </li>
       <li>
-        <Dialog client:only>
-          <Icon slot="button" icon="key" />
-          <p class="age-encryption">
-            To send me secure mail, please use <Link
-              href="https://github.com/FiloSottile/age">age</Link
-            > with the following public key
-
-            <AgeCode client:only code={AGE_PUBLIC_KEY} />
-
-            <Link href={`https://age-online.com/?r=${AGE_PUBLIC_KEY}`}>
-              This tool
-            </Link> is handy for quick encryption.
-          </p>
-        </Dialog>
+        <AgeCode client:only />
       </li>
       <li>
+        {
+          /*
         <Dialog client:only>
           <Icon slot="button" icon="ruler" />
           <div class="project-wrapper">
@@ -116,6 +98,8 @@ const AGE_PUBLIC_KEY =
             </table>
           </div>
         </Dialog>
+        */
+        }
       </li>
 
       <li>
@@ -196,11 +180,6 @@ const AGE_PUBLIC_KEY =
     gap: 0.25rem;
     flex-wrap: wrap;
     justify-content: end;
-  }
-
-  .age-encryption {
-    margin: 0.5rem;
-    text-align: center;
   }
 
   .project-wrapper {

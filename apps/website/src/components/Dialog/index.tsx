@@ -1,18 +1,17 @@
-import { createEffect, createSignal, type ResolvedChildren } from "solid-js";
+import { createEffect, type JSXElement } from "solid-js";
 
 import styles from "./Dialog.module.css";
-import { Icon } from "@components/Icon";
 import { IconButton } from "@components/IconButton";
 
 type Props = {
-  button?: ResolvedChildren;
-  children: ResolvedChildren;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  children: JSXElement;
   frame?: boolean;
   contain?: boolean;
 };
 
 export function Dialog(props: Props) {
-  const [open, setOpen] = createSignal(false);
   let dialog: HTMLDialogElement | undefined;
   let content: HTMLDivElement | undefined;
 
@@ -20,7 +19,7 @@ export function Dialog(props: Props) {
     if (!dialog || !content) {
       return;
     }
-    if (!open()) {
+    if (!props.open) {
       return;
     }
 
@@ -55,6 +54,16 @@ export function Dialog(props: Props) {
   };
 
   createEffect(() => {
+    if (!dialog) {
+      return;
+    }
+    if (props.open) {
+      dialog.show();
+      resize();
+    }
+  });
+
+  createEffect(() => {
     addEventListener("resize", resize);
     return () => {
       removeEventListener("resize", resize);
@@ -63,24 +72,11 @@ export function Dialog(props: Props) {
 
   const cancelDialog = (e: Event) => {
     e.preventDefault();
-    setOpen(false);
+    props.setOpen(false);
   };
 
   return (
     <>
-      <button
-        onClick={() => {
-          if (!dialog) {
-            return;
-          }
-          setOpen(true);
-          dialog.show();
-          resize();
-        }}
-        class={styles.button}
-      >
-        {props.button}
-      </button>
       <dialog
         // @ts-ignore
         closedby="any"
@@ -99,16 +95,16 @@ export function Dialog(props: Props) {
             e.clientX <= rect.left + rect.width;
 
           if (!isInDialog) {
-            setOpen(false);
+            props.setOpen(false);
           }
         }}
         onAnimationEnd={(e) => {
-          if (dialog && !open()) {
+          if (dialog && !props.open) {
             dialog.close();
           }
         }}
         class={styles.dialog}
-        data-open={open()}
+        data-open={props.open}
         onKeyDown={(e) => {
           if (e.key === "Escape") {
             cancelDialog(e);
@@ -122,7 +118,7 @@ export function Dialog(props: Props) {
           button={{
             onClick: () => {
               if (dialog) {
-                setOpen(false);
+                props.setOpen(false);
               }
             },
             class: styles.close,

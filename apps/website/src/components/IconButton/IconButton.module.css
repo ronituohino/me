@@ -1,8 +1,14 @@
 .button {
   outline: none;
+  background-color: transparent;
 }
 
-.button:hover > .icon,
-.button:focus-visible > .icon {
+.button[data-disabled="false"]:hover > .icon,
+.button[data-disabled="false"]:focus-visible > .icon {
   background: var(--bg-hover);
+}
+
+.button[data-disabled="true"] > .icon {
+  opacity: 0.33;
+  cursor: default;
 }
