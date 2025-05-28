@@ -18,7 +18,6 @@ type Props = {
 
 export function Slideshow(props: Props) {
   const [open, setOpen] = createSignal(false);
-
   const [currentIndex, setCurrentIndex] = createSignal(0);
   const [leftArrowDisabled, setLeftArrowDisabled] = createSignal(false);
   const [rightArrowDisabled, setRightArrowDisabled] = createSignal(false);
@@ -36,55 +35,73 @@ export function Slideshow(props: Props) {
     }
   });
 
+  const nextImage = () => {
+    const nextIndex = currentIndex() + 1;
+    if (nextIndex < props.images.length) {
+      setCurrentIndex(nextIndex);
+    }
+  };
+
+  const previousImage = () => {
+    const previousIndex = currentIndex() - 1;
+    if (previousIndex >= 0) {
+      setCurrentIndex(previousIndex);
+    }
+  };
+
   return (
     <>
       <IconButton
-        icon={{ icon: "ruler" }}
+        ariaLabel="Open picture collection"
+        icon={{ icon: "note" }}
         button={{
           onClick: () => {
             setOpen(true);
           },
         }}
       />
-      <Dialog open={open()} setOpen={setOpen} frame={false} contain>
-        <>
-          <IconButton
-            icon={{ icon: "l_arrow" }}
-            button={{
-              onClick: () => {
-                const previousIndex = currentIndex() - 1;
-                if (previousIndex >= 0) {
-                  setCurrentIndex(previousIndex);
-                }
-              },
-              class: styles.previous,
-            }}
-            disabled={leftArrowDisabled()}
-          />
+      <div
+        onKeyDown={(e) => {
+          if (e.key === "ArrowLeft") {
+            previousImage();
+          } else if (e.key === "ArrowRight") {
+            nextImage();
+          }
+        }}
+      >
+        <Dialog open={open()} setOpen={setOpen} hideFrame>
+          <div class={styles.wrapper}>
+            <IconButton
+              ariaLabel="Show previous image"
+              icon={{ icon: "l_arrow" }}
+              button={{
+                onClick: previousImage,
+                class: styles.previous,
+              }}
+              disabled={leftArrowDisabled()}
+            />
 
-          <img
-            src={props.images[currentIndex()].src}
-            alt={props.images[currentIndex()].alt}
-            width={props.images[currentIndex()].width}
-            height={props.images[currentIndex()].height}
-            class={styles.image}
-          />
+            <img
+              src={props.images[currentIndex()].src}
+              alt={props.images[currentIndex()].alt}
+              width={props.images[currentIndex()].width}
+              height={props.images[currentIndex()].height}
+              class={styles.image}
+              aria-live="polite"
+            />
 
-          <IconButton
-            icon={{ icon: "r_arrow" }}
-            button={{
-              onClick: () => {
-                const nextIndex = currentIndex() + 1;
-                if (nextIndex < props.images.length) {
-                  setCurrentIndex(nextIndex);
-                }
-              },
-              class: styles.next,
-            }}
-            disabled={rightArrowDisabled()}
-          />
-        </>
-      </Dialog>
+            <IconButton
+              ariaLabel="Show next image"
+              icon={{ icon: "r_arrow" }}
+              button={{
+                onClick: nextImage,
+                class: styles.next,
+              }}
+              disabled={rightArrowDisabled()}
+            />
+          </div>
+        </Dialog>
+      </div>
     </>
   );
 }

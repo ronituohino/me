@@ -7,67 +7,20 @@ type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
   children: JSXElement;
-  frame?: boolean;
-  contain?: boolean;
+  hideFrame?: boolean;
 };
 
 export function Dialog(props: Props) {
   let dialog: HTMLDialogElement | undefined;
   let content: HTMLDivElement | undefined;
 
-  const resize = () => {
-    if (!dialog || !content) {
-      return;
-    }
-    if (!props.open) {
-      return;
-    }
-
-    const rect = content.getBoundingClientRect();
-
-    const twoRem =
-      2 * parseFloat(getComputedStyle(document.documentElement).fontSize); // 2rem
-
-    const diffX = window.innerWidth - rect.width - twoRem;
-    const diffY = window.innerHeight - rect.height - twoRem;
-
-    let overflow = false;
-
-    if (diffY > 0) {
-      dialog.style.setProperty("--top", `${diffY / 2}px`);
-    } else {
-      overflow = true;
-      dialog.style.setProperty("--top", `0px`);
-    }
-    if (diffX > 0) {
-      dialog.style.setProperty("--right", `${diffX / 2}px`);
-    } else {
-      overflow = true;
-      dialog.style.setProperty("--right", `${diffX}px`);
-    }
-
-    if (overflow) {
-      dialog.style.setProperty("overflow", "scroll");
-    } else {
-      dialog.style.setProperty("overflow", "hidden");
-    }
-  };
-
   createEffect(() => {
     if (!dialog) {
       return;
     }
     if (props.open) {
-      dialog.show();
-      resize();
+      dialog.showModal();
     }
-  });
-
-  createEffect(() => {
-    addEventListener("resize", resize);
-    return () => {
-      removeEventListener("resize", resize);
-    };
   });
 
   const cancelDialog = (e: Event) => {
@@ -78,12 +31,10 @@ export function Dialog(props: Props) {
   return (
     <>
       <dialog
-        // @ts-ignore
-        closedby="any"
         ref={dialog}
         onClick={(e) => {
           // Close dialog when clicking outside of it
-          if (!content) {
+          if (!content || (e.clientX === 0 && e.clientY === 0)) {
             return;
           }
 
@@ -98,7 +49,7 @@ export function Dialog(props: Props) {
             props.setOpen(false);
           }
         }}
-        onAnimationEnd={(e) => {
+        onAnimationEnd={() => {
           if (dialog && !props.open) {
             dialog.close();
           }
@@ -115,6 +66,7 @@ export function Dialog(props: Props) {
         }}
       >
         <IconButton
+          ariaLabel="Close dialog"
           button={{
             onClick: () => {
               if (dialog) {
@@ -126,12 +78,7 @@ export function Dialog(props: Props) {
           icon={{ icon: "close" }}
         />
 
-        <div
-          class={styles.content}
-          ref={content}
-          data-frame={props.frame ?? true}
-          data-contain={props.contain ?? false}
-        >
+        <div class={styles.content} ref={content} data-frame={!props.hideFrame}>
           {props.children}
         </div>
       </dialog>

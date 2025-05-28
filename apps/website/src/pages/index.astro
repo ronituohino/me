@@ -6,11 +6,21 @@ const shownProjects = await getCollection(
   "projects",
   ({ data }: { data: ProjectSchema }) => data.show !== "hidden"
 );
-
-const sortedProjects = shownProjects.toSorted((a, b) => {
-  if (a.data.year > b.data.year) {
+const mappedProjects = shownProjects.map((project) => {
+  return {
+    title: project.data.title,
+    organization: project.data.organization,
+    year: project.data.year,
+    description: project.data.description,
+    technologies: project.data.technologies,
+    links: project.data.links,
+    show: project.data.show,
+  };
+});
+const sortedProjects = mappedProjects.toSorted((a, b) => {
+  if (a.year > b.year) {
     return -1;
-  } else if (b.data.year > a.data.year) {
+  } else if (b.year > a.year) {
     return 1;
   } else {
     return 0;
@@ -18,13 +28,11 @@ const sortedProjects = shownProjects.toSorted((a, b) => {
 });
 
 import Layout from "@layouts/Layout.astro";
-import { Link } from "@components/Link";
-import { Dialog } from "@components/Dialog";
 
-import { Icon } from "@components/Icon";
 import { IconLink } from "@components/IconLink";
 import { Slideshow } from "@components/Slideshow";
 import { AgeCode } from "@components/AgeCode";
+import { Projects } from "@components/Projects";
 ---
 
 <Layout>
@@ -34,120 +42,83 @@ import { AgeCode } from "@components/AgeCode";
       <p>Fullstack Developer</p>
     </hgroup>
 
-    <p>I love building software and going climbing</p>
+    <p>I love building systems and going climbing</p>
 
-    <ul class="links">
-      <li>
-        <Slideshow
-          client:only
-          images={[
-            {
-              src: "/book.png",
-              alt: "Top book Ørnfjord with rock climbers in the background.",
-              width: 601,
-              height: 798,
-            },
-            {
-              src: "/writing.png",
-              alt: "Open book with the text 'Hiton siisti mesta!' from Satu, Roni, Antton, and Perttu.",
-              width: 605,
-              height: 798,
-            },
-          ]}
-        />
-      </li>
-      <li>
-        <AgeCode client:only />
-      </li>
-      <li>
-        {
-          /*
-        <Dialog client:only>
-          <Icon slot="button" icon="ruler" />
-          <div class="project-wrapper">
-            <table>
-              <thead>
-                <tr>
-                  <th class="year-header">Year</th>
-                  <th class="proj-header">Project</th>
-                  <th class="org-header">Made at</th>
-                  <th class="tech-header">Built with</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  sortedProjects.map((project) => (
-                    <tr>
-                      <td class="year">{project.data.year}</td>
-                      <td class="proj">
-                        <Link href={project.data.links[0]}>
-                          {project.data.title}
-                        </Link>
-                        {project.data.show === "featured" ? (
-                          <span class="proj-star">★</span>
-                        ) : null}
-                      </td>
-                      <td class="org">{project.data.organization}</td>
-                      <td class="tech">
-                        {project.data.technologies.join(", ")}
-                      </td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </table>
-          </div>
-        </Dialog>
-        */
-        }
-      </li>
-
-      <li>
-        <IconLink
-          link={{
-            ariaLabel: "See my GitHub profile",
-            href: "https://github.com/ronituohino",
-          }}
-          icon={{
-            icon: "github",
-          }}
-        />
-      </li>
-      <li>
-        <IconLink
-          link={{
-            ariaLabel: "See my Linkedin profile",
-            href: "https://www.linkedin.com/in/ronituohino/",
-          }}
-          icon={{
-            icon: "linkedin",
-          }}
-        />
-      </li>
-      <li>
-        <IconLink
-          link={{
-            ariaLabel: "Send me an email",
-            href: "mailto:rt@ronituohino.com",
-          }}
-          icon={{
-            icon: "email",
-          }}
-        />
-      </li>
-
-      <li>
-        <IconLink
-          link={{
-            ariaLabel: "Download résumé (CV)",
-            href: "/ronituohino-resume.pdf",
-          }}
-          icon={{
-            icon: "cv",
-          }}
-        />
-      </li>
-    </ul>
+    <div class="ulist">
+      <ul class="actions">
+        <li>
+          <Slideshow
+            client:only
+            images={[
+              {
+                src: "/book.png",
+                alt: "Top book Ørnfjord with rock climbers in the background.",
+                width: 601,
+                height: 798,
+              },
+              {
+                src: "/writing.png",
+                alt: "Open book with the text 'Hiton siisti mesta!' from Satu, Roni, Antton, and Perttu.",
+                width: 605,
+                height: 798,
+              },
+            ]}
+          />
+        </li>
+        <li>
+          <AgeCode client:only />
+        </li>
+        <li>
+          <Projects client:only projects={sortedProjects} />
+        </li>
+      </ul>
+      <ul class="links">
+        <li>
+          <IconLink
+            link={{
+              ariaLabel: "See my GitHub profile",
+              href: "https://github.com/ronituohino",
+            }}
+            icon={{
+              icon: "github",
+            }}
+          />
+        </li>
+        <li>
+          <IconLink
+            link={{
+              ariaLabel: "See my Linkedin profile",
+              href: "https://www.linkedin.com/in/ronituohino/",
+            }}
+            icon={{
+              icon: "linkedin",
+            }}
+          />
+        </li>
+        <li>
+          <IconLink
+            link={{
+              ariaLabel: "Send me an email",
+              href: "mailto:rt@ronituohino.com",
+            }}
+            icon={{
+              icon: "email",
+            }}
+          />
+        </li>
+        <li>
+          <IconLink
+            link={{
+              ariaLabel: "Download résumé (CV)",
+              href: "/ronituohino-resume.pdf",
+            }}
+            icon={{
+              icon: "cv",
+            }}
+          />
+        </li>
+      </ul>
+    </div>
   </section>
 </Layout>
 
@@ -174,6 +145,13 @@ import { AgeCode } from "@components/AgeCode";
     max-width: 500px;
   }
 
+  .ulist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .actions,
   .links {
     display: flex;
     flex-direction: row;
@@ -182,79 +160,9 @@ import { AgeCode } from "@components/AgeCode";
     justify-content: end;
   }
 
-  .project-wrapper {
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-  }
-
-  table {
-    border-collapse: collapse;
-    max-width: 1600px;
-  }
-  thead {
-    text-align: left;
-  }
-  tbody {
-    text-align: left;
-  }
-
-  thead > tr,
-  tbody > tr:not(:last-child) {
-    border-bottom: 3px solid rgb(255, 187, 109);
-  }
-
-  th,
-  td {
-    padding: 0.25rem 0.5rem;
-  }
-
-  .year-header,
-  .year {
-    width: 1rem;
-    padding-left: 0;
-  }
-  .proj {
-    word-break: break-word;
-  }
-  .proj-star {
-    color: rgb(255, 137, 3);
-  }
-  .org {
-    display: none;
-  }
-  .org-header {
-    display: none;
-  }
-  .tech-header {
-    display: none;
-  }
-  .tech {
-    display: none;
-  }
-  @media screen and (min-width: 496px) {
-    .proj {
-      word-break: normal;
-    }
-    .org-header {
-      display: table-cell;
-    }
-    .org {
-      display: table-cell;
-    }
-  }
-  @media screen and (min-width: 900px) {
-    .tech-header {
-      display: table-cell;
-    }
-    .tech {
-      display: table-cell;
-    }
-  }
-  @media screen and (min-width: 768px) {
-    .year-header,
-    .year {
-      width: 2rem;
+  @media screen and (min-width: 420px) {
+    .ulist {
+      flex-direction: row;
     }
   }
 </style>

@@ -3,12 +3,12 @@
   background-color: transparent;
 }
 
-.button[data-disabled="false"]:hover > .icon,
-.button[data-disabled="false"]:focus-visible > .icon {
+.button:not([disabled]):hover > .icon,
+.button:not([disabled]):focus-visible > .icon {
   background: var(--bg-hover);
 }
 
-.button[data-disabled="true"] > .icon {
+.button[disabled] > .icon {
   opacity: 0.33;
   cursor: default;
 }

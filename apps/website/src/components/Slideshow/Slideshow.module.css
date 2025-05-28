@@ -1,13 +1,19 @@
+.wrapper {
+  width: calc(100vw - 4rem);
+  height: calc(100vh - 4rem);
+  overflow: hidden;
+}
+
 .previous,
 .next {
   position: absolute;
-  bottom: 1rem;
+  bottom: 0;
   background-color: transparent;
   margin: 10px;
 }
 
 .previous {
-  left: 1rem;
+  left: 0;
 }
 .previous[data-disabled="true"] > .arrow,
 .next[data-disabled="true"] > .arrow {
@@ -16,7 +22,7 @@
 }
 
 .next {
-  right: 1rem;
+  right: 0;
 }
 
 .image {

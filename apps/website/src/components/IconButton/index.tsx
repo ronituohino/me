@@ -5,6 +5,7 @@ import styles from "./IconButton.module.css";
 
 type IconButtonProps = {
   icon: IconProps;
+  ariaLabel: string;
   button: {
     onClick: () => void;
     class?: string;
@@ -17,7 +18,8 @@ export function IconButton(props: IconButtonProps) {
     <button
       onClick={() => props.button.onClick()}
       class={styles.button + " " + props.button.class}
-      data-disabled={props.disabled ?? "false"}
+      disabled={props.disabled}
+      aria-label={props.ariaLabel}
     >
       <Icon {...props.icon} class={styles.icon} disabled={props.disabled} />
     </button>
