@@ -8,7 +8,6 @@ export default defineConfig({
       allow: ["../.."],
     },
   },
-  plugins: [react()],
   css: {
     modules: {
       localsConvention: "camelCase",

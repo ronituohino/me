@@ -1,0 +1,13 @@
+{
+  "slug": "chroniconnect",
+  "title": "Chroniconnect",
+  "organization": "Junction",
+  "year": 2023,
+  "description": "48-hour-long hackathon app mockup which connects people with chronic pain.",
+  "technologies": ["React", "Vite", "MUI"],
+  "links": [
+    "https://chroniconnect.vercel.app/",
+    "https://github.com/huongtxdo/tuska-junction2023"
+  ],
+  "show": "front"
+}

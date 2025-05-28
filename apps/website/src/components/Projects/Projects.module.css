@@ -1,0 +1,73 @@
+.wrapper {
+  overflow: hidden;
+}
+
+table {
+  border-collapse: collapse;
+  max-width: 1600px;
+}
+thead {
+  text-align: left;
+}
+tbody {
+  text-align: left;
+}
+
+thead > tr,
+tbody > tr:not(:last-child) {
+  border-bottom: 3px solid rgb(255, 187, 109);
+}
+
+th,
+td {
+  padding: 0.25rem 0.5rem;
+}
+
+.yearHeader,
+.year {
+  width: 1rem;
+  padding-left: 0;
+}
+.proj {
+  word-break: break-word;
+}
+.projStar {
+  color: rgb(255, 137, 3);
+}
+.org {
+  display: none;
+}
+.orgHeader {
+  display: none;
+}
+.techHeader {
+  display: none;
+}
+.tech {
+  display: none;
+}
+@media screen and (min-width: 496px) {
+  .proj {
+    word-break: normal;
+  }
+  .orgHeader {
+    display: table-cell;
+  }
+  .org {
+    display: table-cell;
+  }
+}
+@media screen and (min-width: 900px) {
+  .techHeader {
+    display: table-cell;
+  }
+  .tech {
+    display: table-cell;
+  }
+}
+@media screen and (min-width: 768px) {
+  .yearHeader,
+  .year {
+    width: 2rem;
+  }
+}

@@ -18,8 +18,8 @@ export function Experience() {
               school and during multiple summers.
             </li>
             <li>Collaborated with senior developers to rewrite both sites.</li>
-            <li>Created a client-side analytics integration independently.</li>
-            <li>Added new features and fixed existing ones.</li>
+            <li>Implemented profiles for the web client.</li>
+            <li>Fixed numerous issues related to accessibility.</li>
           </ul>
         </Detail>
         <Detail
@@ -29,13 +29,6 @@ export function Experience() {
         >
           <ul>
             <li>Gained leadership experience.</li>
-          </ul>
-        </Detail>
-        <Detail title="Software Tester" place="Testlio" time="1/2019">
-          <ul>
-            <li>
-              Localized apps, reported bugs, and completed technical analysis.
-            </li>
           </ul>
         </Detail>
         <Detail

@@ -1,0 +1,10 @@
+{
+  "slug": "gparticles",
+  "title": "Super Citycon",
+  "organization": "Ben Willes Games",
+  "year": 2017,
+  "description": "City building game prototype.",
+  "technologies": ["Unity"],
+  "links": ["https://supercitycon.net/"],
+  "show": "hidden"
+}

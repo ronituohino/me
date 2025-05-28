@@ -1,0 +1,17 @@
+{
+  "slug": "doodle-design",
+  "title": "Doodle Design",
+  "organization": "University of Helsinki",
+  "year": 2022,
+  "description": "Fully featured e-commerce store for an imaginary clothing brand.",
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Express",
+    "GraphQL",
+    "MongoDB",
+    "Docker"
+  ],
+  "links": ["https://github.com/ronituohino/doodle-design"],
+  "show": "front"
+}

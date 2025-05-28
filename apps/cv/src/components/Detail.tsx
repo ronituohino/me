@@ -26,16 +26,14 @@ export function Detail({
             <br />
             <span className={styles.place}>{place}</span>
           </div>
-
           <span className={styles.time}>{time}</span>
         </h3>
       ) : (
         <h3>
           <div>
-            <span className={styles.title}>{title} · </span>
-            <span className={styles.place}>{place}</span>
+            <span className={styles.title}>{title}</span>
+            <span className={styles.place}> · {place}</span>
           </div>
-
           <span className={styles.time}>{time}</span>
         </h3>
       )}

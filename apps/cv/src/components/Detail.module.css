@@ -14,6 +14,10 @@ h3 {
   margin-left: 8px;
 }
 
+.place {
+  color: var(--color-detail);
+}
+
 .description {
   color: var(--color-detail);
   margin-top: 16px;

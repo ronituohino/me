@@ -7,6 +7,20 @@ import solidJs from "@astrojs/solid-js";
 export default defineConfig({
   site: "https://ronituohino.com",
   integrations: [solidJs(), sitemap()],
+  devToolbar: {
+    enabled: false
+  },
+
+  vite: {
+    optimizeDeps: {
+      include: ["./assets/aseprite-js.bundle.js"],
+    },
+    build: {
+      commonjsOptions: {
+        include: ["./assets/aseprite-js.bundle.js"],
+      },
+    },
+  },
 
   // Enable passing class names from parent to child components
   scopedStyleStrategy: "class",

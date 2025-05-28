@@ -1,0 +1,16 @@
+.icon {
+  background: var(--bg);
+  color: var(--color);
+  display: block;
+  width: 48px;
+  height: 48px;
+}
+
+.icon[data-small="true"] {
+  width: 36px;
+  height: 36px;
+}
+
+.icon[data-disabled="false"]:hover {
+  background: var(--bg-hover);
+}

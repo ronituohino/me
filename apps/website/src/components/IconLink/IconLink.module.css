@@ -1,0 +1,8 @@
+.link {
+  outline: none;
+}
+
+.link:hover > .icon,
+.link:focus-visible > .icon {
+  background: var(--bg-hover);
+}

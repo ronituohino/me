@@ -1,0 +1,10 @@
+{
+  "slug": "gparticles",
+  "title": "GParticles",
+  "organization": "",
+  "year": 2021,
+  "description": "Mobile art project about simulating lots of particles.",
+  "technologies": ["Unity"],
+  "links": ["https://github.com/ronituohino/gparticles"],
+  "show": "front"
+}

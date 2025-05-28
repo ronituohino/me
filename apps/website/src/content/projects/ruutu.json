@@ -1,0 +1,10 @@
+{
+  "slug": "ruutu",
+  "title": "Ruutu",
+  "organization": "Nelonen Media",
+  "year": 2023,
+  "description": "Finnish over-the-top video streaming service.",
+  "technologies": ["Next.js", "React", "Storybook", "Docker"],
+  "links": ["https://ruutu.fi"],
+  "show": "featured"
+}

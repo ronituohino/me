@@ -1,0 +1,54 @@
+.button {
+  background: none;
+}
+
+.dialog {
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: auto;
+}
+
+.dialog[data-open="true"] {
+  animation: show 150ms ease-in-out forwards;
+}
+
+.dialog[data-open="false"] {
+  animation: hide 150ms ease-in-out backwards;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0);
+  }
+  to {
+    opacity: 1;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+  }
+  to {
+    opacity: 0;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0);
+  }
+}
+
+.close {
+  position: absolute;
+  background: transparent;
+  top: 0;
+  right: 0;
+}
+
+.content[data-frame="true"] {
+  background: url("bg.png");
+  border: 30px solid;
+  border-radius: 30px;
+  border-image: url("border.png") 30;
+  border-image-repeat: round;
+  scrollbar-color: #e67a00 #ffbc70;
+}
