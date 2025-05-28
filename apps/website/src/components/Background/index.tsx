@@ -61,7 +61,7 @@ export function Background() {
   const [scale, setScale] = createSignal(1);
 
   // Desktop
-  const [mousePos, setMousePos] = createSignal([60, 800]);
+  const [mousePos, setMousePos] = createSignal([60, 600]);
 
   createEffect(async () => {
     if (!canvas) {
