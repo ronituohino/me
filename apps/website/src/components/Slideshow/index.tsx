@@ -1,22 +1,19 @@
 import { createEffect, createSignal } from "solid-js";
-import { Icon } from "@components/Icon";
-
-import styles from "./Slideshow.module.css";
 import { IconButton } from "@components/IconButton";
 import { Dialog } from "@components/Dialog";
 
-type Image = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
+import book from "./book.webp";
+import writing from "./writing.webp";
 
-type Props = {
-  images: Image[];
-};
+const IMAGES = [book, writing];
+const IMAGE_ALTS = [
+  "Top book Ørnfjord with rock climbers in the background",
+  "Open book with the text 'Hiton siisti mesta!' from Satu, Roni, Antton, and Perttu",
+];
 
-export function Slideshow(props: Props) {
+import styles from "./Slideshow.module.css";
+
+export function Slideshow() {
   const [open, setOpen] = createSignal(false);
   const [currentIndex, setCurrentIndex] = createSignal(0);
   const [leftArrowDisabled, setLeftArrowDisabled] = createSignal(false);
@@ -28,7 +25,7 @@ export function Slideshow(props: Props) {
     } else {
       setLeftArrowDisabled(false);
     }
-    if (currentIndex() === props.images.length - 1) {
+    if (currentIndex() === IMAGES.length - 1) {
       setRightArrowDisabled(true);
     } else {
       setRightArrowDisabled(false);
@@ -37,7 +34,7 @@ export function Slideshow(props: Props) {
 
   const nextImage = () => {
     const nextIndex = currentIndex() + 1;
-    if (nextIndex < props.images.length) {
+    if (nextIndex < IMAGES.length) {
       setCurrentIndex(nextIndex);
     }
   };
@@ -82,10 +79,10 @@ export function Slideshow(props: Props) {
             />
 
             <img
-              src={props.images[currentIndex()].src}
-              alt={props.images[currentIndex()].alt}
-              width={props.images[currentIndex()].width}
-              height={props.images[currentIndex()].height}
+              src={IMAGES[currentIndex()].src}
+              alt={IMAGE_ALTS[currentIndex()]}
+              width={IMAGES[currentIndex()].width}
+              height={IMAGES[currentIndex()].height}
               class={styles.image}
               aria-live="polite"
             />

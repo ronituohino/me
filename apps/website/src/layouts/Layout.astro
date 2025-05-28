@@ -76,6 +76,7 @@ const ogHref = `${Astro.site}og.png`;
       type="font/woff2"
       href="/fonts/ark-pixel-10px-proportional-latin.woff2"
     />
+    <link rel="preload" as="image" href="/senja/senja.png" />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
@@ -87,7 +88,24 @@ const ogHref = `${Astro.site}og.png`;
       <slot />
     </main>
 
-    <style is:global lang="less">
+    <style is:global>
+      @font-face {
+        font-family: "ArkPixel10";
+        src: url("/fonts/ark-pixel-10px-proportional-latin.woff2")
+          format("woff2");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "ArkPixel16";
+        src: url("/fonts/ark-pixel-16px-proportional-latin.woff2")
+          format("woff2");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
       * {
         box-sizing: border-box;
         margin: 0;
@@ -132,7 +150,7 @@ const ogHref = `${Astro.site}og.png`;
       }
     </style>
 
-    <style lang="less">
+    <style>
       :root {
         --white: hsl(0, 0%, 92%);
 
@@ -143,23 +161,6 @@ const ogHref = `${Astro.site}og.png`;
 
         color: var(--white);
         background: var(--background);
-      }
-
-      @font-face {
-        font-family: "ArkPixel10";
-        src: url("/fonts/ark-pixel-10px-proportional-latin.woff2")
-          format("woff2");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: "ArkPixel16";
-        src: url("/fonts/ark-pixel-16px-proportional-latin.woff2")
-          format("woff2");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
       }
 
       html {
