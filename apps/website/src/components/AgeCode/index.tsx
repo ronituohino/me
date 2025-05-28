@@ -26,9 +26,11 @@ export function AgeCode() {
       />
       <Dialog open={open()} setOpen={setOpen}>
         <div class={styles.wrapper}>
-          To send me secure mail, please use{" "}
-          <Link href="https://github.com/FiloSottile/age">age</Link> with the
-          following public key
+          <p>
+            To send me secure mail, please use{" "}
+            <Link href="https://github.com/FiloSottile/age">age</Link> with the
+            following public key
+          </p>
           <div
             class={styles.codeContainer}
             onClick={() => {
@@ -39,10 +41,12 @@ export function AgeCode() {
               {AGE_PUBLIC_KEY}
             </textarea>
           </div>
-          <Link href={`https://age-online.com/?r=${AGE_PUBLIC_KEY}`}>
-            This tool
-          </Link>{" "}
-          is handy for quick encryption.
+          <p>
+            <Link href={`https://age-online.com/?r=${AGE_PUBLIC_KEY}`}>
+              This tool
+            </Link>{" "}
+            is handy for quick encryption.
+          </p>
         </div>
       </Dialog>
     </>
