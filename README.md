@@ -6,11 +6,6 @@ It contains two applications in the `apps` folder:
 - cv
 - website
 
-## TODO
-
-- Finish remaining tab styles to buttons
-- Use Slideshow with arrow keys
-
 ## Development
 
 Make sure you have Node (>=v20) and npm installed.
