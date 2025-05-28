@@ -21,8 +21,7 @@ function calculateScale(width: number, height: number) {
 function renderBackground(
   canvas: HTMLCanvasElement,
   scale: number,
-  mousePos?: number[],
-  panningPos?: number[]
+  mousePos?: number[]
 ) {
   const context = canvas.getContext("2d");
   if (!context) {
@@ -42,9 +41,6 @@ function renderBackground(
       (mousePos[1] / canvas.height) *
       ((BACKGROUND_HEIGHT * scale) % canvas.height) *
       -1;
-  } else if (panningPos) {
-    x = panningPos[0];
-    y = panningPos[1];
   }
 
   disableSmoothing(context);
@@ -65,13 +61,7 @@ export function Background() {
   const [scale, setScale] = createSignal(1);
 
   // Desktop
-  const [mousePos, setMousePos] = createSignal([0, 0]);
-
-  // Mobile
-  const [prevTouch, setPrevTouch] = createSignal<number[] | undefined>(
-    undefined
-  );
-  const [panningPos, setPanningPos] = createSignal([0, 0]);
+  const [mousePos, setMousePos] = createSignal([60, 800]);
 
   createEffect(async () => {
     if (!canvas) {
@@ -89,7 +79,7 @@ export function Background() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       setScale(calculateScale(canvas.width, canvas.height));
-      renderBackground(canvas, scale());
+      renderBackground(canvas, scale(), mousePos());
     }
 
     resize();
@@ -100,51 +90,9 @@ export function Background() {
     window.addEventListener("pointermove", (e) => {
       if (e.pointerType === "mouse") {
         setMousePos([e.clientX, e.clientY]);
-        renderBackground(canvas, scale(), mousePos(), undefined);
-      } else {
-        const prev = prevTouch();
-        if (prev) {
-          const movement = [e.clientX - prev[0], e.clientY - prev[1]];
-          const newPos = [
-            panningPos()[0] + movement[0],
-            panningPos()[1] + movement[1],
-          ];
-
-          // Panning limits
-          if (newPos[0] > 0) {
-            newPos[0] = 0;
-          }
-          if (newPos[1] > 0) {
-            newPos[1] = 0;
-          }
-          const minX = ((BACKGROUND_WIDTH * scale()) % canvas.width) * -1;
-          if (newPos[0] < ((BACKGROUND_WIDTH * scale()) % canvas.width) * -1) {
-            newPos[0] = minX;
-          }
-          const minY = ((BACKGROUND_HEIGHT * scale()) % canvas.height) * -1;
-          if (
-            newPos[1] <
-            ((BACKGROUND_HEIGHT * scale()) % canvas.height) * -1
-          ) {
-            newPos[1] = minY;
-          }
-
-          setPanningPos([newPos[0], newPos[1]]);
-        }
-
-        renderBackground(canvas, scale(), undefined, panningPos());
-        setPrevTouch([e.clientX, e.clientY]);
+        renderBackground(canvas, scale(), mousePos());
       }
-    });
-
-    window.addEventListener("pointercancel", () => {
-      setPrevTouch(undefined);
-    });
-    window.addEventListener("pointerleave", () => {
-      setPrevTouch(undefined);
-    });
-    window.addEventListener("pointerup", () => {
-      setPrevTouch(undefined);
+      // No support for mobile devies
     });
   });
 
