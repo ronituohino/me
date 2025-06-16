@@ -7,7 +7,7 @@ main {
   column-gap: var(--column-gap);
   grid-template-areas: "header info" "left right";
   padding: var(--padding);
-  height: 100vh;
+  height: 100dvh;
 }
 
 .left {
