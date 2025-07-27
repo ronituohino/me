@@ -21,7 +21,7 @@ function calculateScale(width: number, height: number) {
 function renderBackground(
   canvas: HTMLCanvasElement,
   scale: number,
-  mousePos?: number[]
+  mousePos: number[]
 ) {
   const context = canvas.getContext("2d");
   if (!context) {
@@ -29,9 +29,9 @@ function renderBackground(
   }
 
   let x = 0;
-  let y = 0;
+  let y = ((BACKGROUND_HEIGHT * scale) % canvas.height) * -1;
 
-  if (mousePos) {
+  if (mousePos[0] !== 0 && mousePos[1] !== 0) {
     x =
       (mousePos[0] / canvas.width) *
       ((BACKGROUND_WIDTH * scale) % canvas.width) *
@@ -61,7 +61,7 @@ export function Background() {
   const [scale, setScale] = createSignal(1);
 
   // Desktop
-  const [mousePos, setMousePos] = createSignal([60, 600]);
+  const [mousePos, setMousePos] = createSignal([0, 0]);
 
   createEffect(async () => {
     if (!canvas) {

@@ -33,6 +33,7 @@ td {
 }
 .projStar {
   color: rgb(255, 137, 3);
+  margin-left: 0.25rem;
 }
 .org {
   display: none;
