@@ -16,6 +16,7 @@ import styles from "./Slideshow.module.css";
 export function Slideshow() {
   const [open, setOpen] = createSignal(false);
   const [currentIndex, setCurrentIndex] = createSignal(0);
+  const [loading, setLoading] = createSignal(true);
   const [leftArrowDisabled, setLeftArrowDisabled] = createSignal(false);
   const [rightArrowDisabled, setRightArrowDisabled] = createSignal(false);
 
@@ -35,6 +36,7 @@ export function Slideshow() {
   const nextImage = () => {
     const nextIndex = currentIndex() + 1;
     if (nextIndex < IMAGES.length) {
+      setLoading(true);
       setCurrentIndex(nextIndex);
     }
   };
@@ -42,6 +44,7 @@ export function Slideshow() {
   const previousImage = () => {
     const previousIndex = currentIndex() - 1;
     if (previousIndex >= 0) {
+      setLoading(true);
       setCurrentIndex(previousIndex);
     }
   };
@@ -67,7 +70,7 @@ export function Slideshow() {
         }}
       >
         <Dialog open={open()} setOpen={setOpen} hideFrame>
-          <div class={styles.wrapper}>
+          <div class={styles.wrapper} aria-live="polite">
             <IconButton
               ariaLabel="Show previous image"
               icon={{ icon: "l_arrow" }}
@@ -79,13 +82,22 @@ export function Slideshow() {
             />
 
             <img
+              data-loading={loading()}
+              onLoad={() => setLoading(false)}
+              onError={() => setLoading(false)}
               src={IMAGES[currentIndex()].src}
               alt={IMAGE_ALTS[currentIndex()]}
               width={IMAGES[currentIndex()].width}
               height={IMAGES[currentIndex()].height}
               class={styles.image}
-              aria-live="polite"
             />
+
+            <div aria-label="Loading image" class={styles.loader}>
+              <div class={styles.loader1} />
+              <div class={styles.loader2} />
+              <div class={styles.loader3} />
+              <div class={styles.loader4} />
+            </div>
 
             <IconButton
               ariaLabel="Show next image"
