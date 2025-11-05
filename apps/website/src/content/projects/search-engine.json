@@ -5,9 +5,6 @@
   "year": 2025,
   "description": "Search engine for the internet.",
   "technologies": ["Astro", "Go", "Python", "Kubernetes"],
-  "links": [
-    "https://ronituohino.github.io/swap/",
-    "https://github.com/ronituohino/swap"
-  ],
+  "links": ["https://github.com/ronituohino/swap"],
   "show": "front"
 }
