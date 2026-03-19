@@ -6,19 +6,22 @@ export function Experience() {
     <section>
       <h2>Experience</h2>
       <div className={styles.experience}>
+        <Detail title="Consultant" place="Netlight" time="3/2026 - present" />
         <Detail
           title="Junior Developer"
           place="Nelonen Media"
-          time="5/2022 - present"
+          time="5/2022 - 1/2026"
         >
           <ul>
             <li>
-              Developed <a href="https://ruutu.fi">ruutu.fi</a> &{" "}
-              <a href="https://supla.fi">supla.fi</a> websites partly alongside
-              school and during multiple summers.
+              Developed a state-of-the-art video stream monitoring and
+              observability system.
             </li>
-            <li>Collaborated with senior developers to rewrite both sites.</li>
-            <li>Implemented profiles for the web client.</li>
+            <li>
+              Rewrote and developed <a href="https://ruutu.fi">ruutu.fi</a> &{" "}
+              <a href="https://supla.fi">supla.fi</a>.
+            </li>
+            <li>Implemented profiles for the Ruutu web client.</li>
             <li>Fixed numerous issues related to accessibility.</li>
           </ul>
         </Detail>
@@ -37,10 +40,9 @@ export function Experience() {
           time="4/2018 - 1/2019"
         >
           <ul>
-            <li>Created a prototype with the Unity game engine.</li>
             <li>
-              Programmed preproduction sofware: an asset manager and a landscape
-              generator.
+              Created preproduction sofware and a game prototype with the Unity
+              engine.
             </li>
           </ul>
         </Detail>

@@ -3,7 +3,8 @@ import { Experience } from "./left/Experience";
 import { Info } from "./top/Info";
 import { Profile } from "./top/Profile";
 import { Skills } from "./right/Skills";
-import { Technologies } from "./right/Technologies";
+import { Competences } from "./right/Competences";
+import { Languages } from "./right/Languages";
 
 import styles from "./App.module.css";
 
@@ -19,7 +20,8 @@ export function App() {
         </div>
         <div className={styles.right}>
           <Skills />
-          <Technologies />
+          <Competences />
+          <Languages />
         </div>
       </main>
     </>

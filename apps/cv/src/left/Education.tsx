@@ -13,18 +13,22 @@ export function Education() {
           wrapTitle
         >
           <ul>
-            <li>Writing thesis on video stream monitoring.</li>
             <li>
-              Built a{" "}
+              Wrote <a href="http://hdl.handle.net/10138/603762">thesis</a> on
+              video stream monitoring and observability.
+            </li>
+            <li>
+              Programmed a{" "}
               <a href="https://github.com/ronituohino/swap">search engine</a> on
               a software architecture course.
             </li>
             <li>
-              Built a peer-to-peer chat application on a distributed systems
-              course.
+              Built a{" "}
+              <a href="https://github.com/ronituohino/p2p-chat">P2P chat app</a>{" "}
+              on a distributed systems course.
             </li>
             <li>
-              Survived{" "}
+              Completed{" "}
               <a href="https://ppc.cs.aalto.fi/">
                 programming parallel computers
               </a>{" "}
@@ -39,14 +43,7 @@ export function Education() {
           wrapTitle
         >
           <ul>
-            <li>
-              Wrote thesis on video streaming using cloud computing (Finnish).
-            </li>
-            <li>
-              Completed a famous{" "}
-              <a href="https://fullstackopen.com/en/">web development course</a>{" "}
-              including all parts and a project.
-            </li>
+            <li>Wrote thesis on video streaming using cloud computing.</li>
           </ul>
         </Detail>
       </div>

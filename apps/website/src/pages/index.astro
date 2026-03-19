@@ -4,7 +4,7 @@ import type { ProjectSchema } from "@content/config";
 
 const shownProjects = await getCollection(
   "projects",
-  ({ data }: { data: ProjectSchema }) => data.show !== "hidden"
+  ({ data }: { data: ProjectSchema }) => data.show !== "hidden",
 );
 const mappedProjects = shownProjects.map((project) => {
   return {
@@ -42,7 +42,7 @@ import { Projects } from "@components/Projects";
       <p>Fullstack Developer</p>
     </hgroup>
 
-    <p>I love building systems and going climbing</p>
+    <p>Building systems and going rock climbing {"<3"}</p>
 
     <div class="ulist">
       <ul class="actions">

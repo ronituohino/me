@@ -1,0 +1,7 @@
+.languageList {
+  list-style: none;
+}
+
+.languageLevel {
+  color: var(--color-detail);
+}
